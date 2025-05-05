@@ -1,7 +1,9 @@
 package com.example.bcsd.controller;
 
+import com.example.bcsd.controller.dto.ArticleRequest;
 import com.example.bcsd.model.Article;
 import com.example.bcsd.service.ArticleService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,13 @@ public class ArticleController {
         Article response = articleService.getArticleById(id);
 
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping
+    public ResponseEntity<Article> postArticle(@RequestBody ArticleRequest request) {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(articleService.createArticle(request));
     }
 
 }

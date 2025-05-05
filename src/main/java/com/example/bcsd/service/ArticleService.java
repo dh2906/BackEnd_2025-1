@@ -1,5 +1,6 @@
 package com.example.bcsd.service;
 
+import com.example.bcsd.controller.dto.ArticleRequest;
 import com.example.bcsd.model.Article;
 import com.example.bcsd.repository.ArticleRepository;
 import org.springframework.stereotype.Service;
@@ -14,5 +15,9 @@ public class ArticleService {
 
     public Article getArticleById(Long id) {
         return articleRepository.findById(id);
+    }
+
+    public Article createArticle(ArticleRequest request) {
+        return articleRepository.save(request.toEntity());
     }
 }
