@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @Repository
 public class ArticleRepository {
@@ -15,7 +16,7 @@ public class ArticleRepository {
         Article article = articles.get(id);
 
         if (article == null) {
-            throw new RuntimeException("Not Found");
+            throw new NoSuchElementException("해당 게시글을 찾을 수 없습니다.");
         }
 
         return articles.get(id);

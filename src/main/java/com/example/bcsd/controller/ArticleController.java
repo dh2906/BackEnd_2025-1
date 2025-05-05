@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.NoSuchElementException;
+
 @RestController
 @RequestMapping("/articles")
 public class ArticleController {
@@ -18,8 +20,13 @@ public class ArticleController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Article> getArticleById(@PathVariable Long id) {
-        return ResponseEntity
-                .ok(articleService.getById(id));
+        try {
+            return ResponseEntity
+                    .ok(articleService.getById(id));
+        } catch(NoSuchElementException ex) {
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @PostMapping
@@ -33,8 +40,12 @@ public class ArticleController {
     public ResponseEntity<Article> updateArticleById(
             @PathVariable Long id, @RequestBody ArticleRequest request
     ) {
-        return ResponseEntity
-                .ok(articleService.updateById(id, request));
+        try {
+            return ResponseEntity
+                    .ok(articleService.updateById(id, request));
+        } catch (NoSuchElementException ex) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
