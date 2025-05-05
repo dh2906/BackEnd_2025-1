@@ -19,14 +19,14 @@ public class ArticleController {
     @GetMapping("/{id}")
     public ResponseEntity<Article> getArticleById(@PathVariable Long id) {
         return ResponseEntity
-                .ok(articleService.getArticleById(id));
+                .ok(articleService.getById(id));
     }
 
     @PostMapping
     public ResponseEntity<Article> postArticle(@RequestBody ArticleRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(articleService.createArticle(request));
+                .body(articleService.create(request));
     }
 
     @PutMapping("/{id}")
@@ -34,12 +34,12 @@ public class ArticleController {
             @PathVariable Long id, @RequestBody ArticleRequest request
     ) {
         return ResponseEntity
-                .ok(articleService.updateArticleById(id, request));
+                .ok(articleService.updateById(id, request));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteArticleById(@PathVariable Long id) {
-        articleService.deleteArticleById(id);
+        articleService.deleteById(id);
 
         return ResponseEntity.noContent().build();
     }

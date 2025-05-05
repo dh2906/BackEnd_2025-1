@@ -13,15 +13,15 @@ public class ArticleService {
         this.articleRepository = articleRepository;
     }
 
-    public Article getArticleById(Long id) {
+    public Article getById(Long id) {
         return articleRepository.findById(id);
     }
 
-    public Article createArticle(ArticleRequest request) {
+    public Article create(ArticleRequest request) {
         return articleRepository.save(request.toEntity());
     }
 
-    public Article updateArticleById(Long id, ArticleRequest request) {
+    public Article updateById(Long id, ArticleRequest request) {
         Article article = articleRepository
                 .findById(id)
                 .update(request);
@@ -29,7 +29,7 @@ public class ArticleService {
         return articleRepository.save(id, article);
     }
 
-    public void deleteArticleById(Long id) {
+    public void deleteById(Long id) {
         articleRepository.delete(id);
     }
 }
