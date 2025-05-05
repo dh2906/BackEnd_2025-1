@@ -20,4 +20,12 @@ public class ArticleService {
     public Article createArticle(ArticleRequest request) {
         return articleRepository.save(request.toEntity());
     }
+
+    public Article updateArticleById(Long id, ArticleRequest request) {
+        Article article = articleRepository
+                .findById(id)
+                .update(request);
+
+        return articleRepository.save(id, article);
+    }
 }

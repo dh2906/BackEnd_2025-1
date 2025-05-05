@@ -12,11 +12,23 @@ public class ArticleRepository {
     private final Map<Long, Article> articles = new HashMap<>();
 
     public Article findById(Long id) {
+        Article article = articles.get(id);
+
+        if (article == null) {
+            throw new RuntimeException("Not Found");
+        }
+
         return articles.get(id);
     }
 
     public Article save(Article article) {
         articles.put(key++, article);
+
+        return article;
+    }
+
+    public Article save(Long id, Article article) {
+        articles.put(id, article);
 
         return article;
     }

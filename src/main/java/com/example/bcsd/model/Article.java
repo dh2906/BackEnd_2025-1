@@ -1,5 +1,7 @@
 package com.example.bcsd.model;
 
+import com.example.bcsd.controller.dto.ArticleRequest;
+
 import java.time.LocalDateTime;
 
 public class Article {
@@ -31,7 +33,11 @@ public class Article {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public Article update(ArticleRequest request) {
+        title = request.getTitle();
+        content = request.getContent();
+        updatedAt = LocalDateTime.now();
+
+        return this;
     }
 }

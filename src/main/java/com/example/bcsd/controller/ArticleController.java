@@ -29,4 +29,11 @@ public class ArticleController {
                 .body(articleService.createArticle(request));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Article> updateArticleById(
+            @PathVariable Long id, @RequestBody ArticleRequest request
+    ) {
+        return ResponseEntity
+                .ok(articleService.updateArticleById(id, request));
+    }
 }
