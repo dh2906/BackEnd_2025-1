@@ -32,4 +32,8 @@ public class ArticleRepository {
 
         return article;
     }
+
+    public void delete(Long id) {
+        articles.remove(id);
+    }
 }

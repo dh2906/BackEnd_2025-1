@@ -36,4 +36,11 @@ public class ArticleController {
         return ResponseEntity
                 .ok(articleService.updateArticleById(id, request));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteArticleById(@PathVariable Long id) {
+        articleService.deleteArticleById(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }
