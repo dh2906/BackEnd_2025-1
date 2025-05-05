@@ -18,9 +18,8 @@ public class ArticleController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Article> getArticleById(@PathVariable Long id) {
-        Article response = articleService.getArticleById(id);
-
-        return ResponseEntity.ok(response);
+        return ResponseEntity
+                .ok(articleService.getArticleById(id));
     }
 
     @PostMapping
