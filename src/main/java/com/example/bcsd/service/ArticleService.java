@@ -24,7 +24,7 @@ public class ArticleService {
     public Article updateById(Long id, ArticleRequest request) {
         Article article = articleRepository
                 .findById(id)
-                .update(request);
+                .update(request.getTitle(), request.getContent());
 
         return articleRepository.save(id, article);
     }

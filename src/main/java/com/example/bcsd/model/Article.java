@@ -33,9 +33,9 @@ public class Article {
         return updatedAt;
     }
 
-    public Article update(ArticleRequest request) {
-        title = request.getTitle();
-        content = request.getContent();
+    public Article update(String title, String content) {
+        this.title = title;
+        this.content = content;
         updatedAt = LocalDateTime.now();
 
         return this;
