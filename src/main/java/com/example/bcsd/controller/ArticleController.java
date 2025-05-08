@@ -21,22 +21,14 @@ public class ArticleController {
 
     @GetMapping
     public ResponseEntity<List<Article>> getAllArticles() {
-        try {
-            return ResponseEntity
-                    .ok(articleService.getAllArticles());
-        } catch (NoSuchElementException ex) {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity
+                .ok(articleService.getAllArticles());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Article> getArticleById(@PathVariable Long id) {
-        try {
-            return ResponseEntity
-                    .ok(articleService.getArticleById(id));
-        } catch(NoSuchElementException ex) {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity
+                .ok(articleService.getArticleById(id));
     }
 
     @PostMapping
@@ -50,12 +42,8 @@ public class ArticleController {
     public ResponseEntity<Article> updateArticleById(
             @PathVariable Long id, @RequestBody ArticleRequest request
     ) {
-        try {
-            return ResponseEntity
-                    .ok(articleService.updateArticleById(id, request));
-        } catch (NoSuchElementException ex) {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity
+                .ok(articleService.updateArticleById(id, request));
     }
 
     @DeleteMapping("/{id}")
@@ -64,4 +52,10 @@ public class ArticleController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<Void> notFoundExceptionHandle() {
+        return ResponseEntity.notFound().build();
+    }
+
 }
