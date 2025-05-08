@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+    <link href="/style.css" rel="stylesheet" />
+</head>
+<body>
+<p>자유 게시판</p>
+<div class="article-box" th:each="article : ${articleList}">
+    <div class="article-header">
+        <h1 th:text="${article.title}"></h1>
+        <p th:text="${article.author} + ' | ' + ${#temporals.format(article.createdAt, 'YY-MM-dd HH:mm')}"></p>
+    </div>
+    <hr>
+    <p class="article-content" th:text="${article.content}"></p>
+</div>
+</body>
+</html>

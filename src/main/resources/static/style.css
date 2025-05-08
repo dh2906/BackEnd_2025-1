@@ -1,0 +1,29 @@
+.article-box {
+    width: 300px;
+    border: 1px solid black;
+    margin: 20px;
+}
+
+.article-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.article-header h1 {
+    align-self: center;
+}
+
+.article-header p {
+    align-self: flex-end;
+    margin-right: 10px;
+}
+
+hr {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.article-content {
+    width: 90%;
+    margin: 10px auto 30px auto;
+}
