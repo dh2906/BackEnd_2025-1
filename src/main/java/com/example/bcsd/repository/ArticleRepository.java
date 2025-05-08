@@ -16,10 +16,6 @@ public class ArticleRepository {
         articles.forEach((id, article) ->
                 result.add(article));
 
-        if (result.isEmpty()) {
-            throw new NoSuchElementException("해당 게시글을 찾을 수 없습니다.");
-        }
-
         return result;
     }
 
