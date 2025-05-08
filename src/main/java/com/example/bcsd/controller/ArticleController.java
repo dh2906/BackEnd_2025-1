@@ -22,7 +22,7 @@ public class ArticleController {
     public ResponseEntity<Article> getArticleById(@PathVariable Long id) {
         try {
             return ResponseEntity
-                    .ok(articleService.getById(id));
+                    .ok(articleService.getArticleById(id));
         } catch(NoSuchElementException ex) {
             return ResponseEntity.notFound().build();
         }
@@ -30,10 +30,10 @@ public class ArticleController {
     }
 
     @PostMapping
-    public ResponseEntity<Article> postArticle(@RequestBody ArticleRequest request) {
+    public ResponseEntity<Article> createArticle(@RequestBody ArticleRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(articleService.create(request));
+                .body(articleService.createArticle(request));
     }
 
     @PutMapping("/{id}")
@@ -42,7 +42,7 @@ public class ArticleController {
     ) {
         try {
             return ResponseEntity
-                    .ok(articleService.updateById(id, request));
+                    .ok(articleService.updateArticleById(id, request));
         } catch (NoSuchElementException ex) {
             return ResponseEntity.notFound().build();
         }
@@ -50,7 +50,7 @@ public class ArticleController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteArticleById(@PathVariable Long id) {
-        articleService.deleteById(id);
+        articleService.deleteArticleById(id);
 
         return ResponseEntity.noContent().build();
     }
