@@ -1,6 +1,7 @@
 package com.example.bcsd.controller;
 
-import com.example.bcsd.controller.dto.ArticleRequest;
+import com.example.bcsd.controller.dto.ArticleCreateRequest;
+import com.example.bcsd.controller.dto.ArticleUpdateRequest;
 import com.example.bcsd.model.Article;
 import com.example.bcsd.service.ArticleService;
 import org.springframework.http.HttpStatus;
@@ -32,7 +33,7 @@ public class ArticleController {
     }
 
     @PostMapping
-    public ResponseEntity<Article> createArticle(@RequestBody ArticleRequest request) {
+    public ResponseEntity<Article> createArticle(@RequestBody ArticleCreateRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(articleService.createArticle(request));
@@ -40,7 +41,7 @@ public class ArticleController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Article> updateArticleById(
-            @PathVariable Long id, @RequestBody ArticleRequest request
+            @PathVariable Long id, @RequestBody ArticleUpdateRequest request
     ) {
         return ResponseEntity
                 .ok(articleService.updateArticleById(id, request));

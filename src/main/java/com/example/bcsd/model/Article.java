@@ -1,17 +1,17 @@
 package com.example.bcsd.model;
 
-import com.example.bcsd.controller.dto.ArticleRequest;
-
 import java.time.LocalDateTime;
 
 public class Article {
     private String title;
+    private String author;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public Article(String title, String content) {
+    public Article(String title, String author, String content) {
         this.title = title;
+        this.author = author;
         this.content = content;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
@@ -19,6 +19,10 @@ public class Article {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getAuthor() {
+        return author;
     }
 
     public String getContent() {
