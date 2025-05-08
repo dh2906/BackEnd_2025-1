@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -18,6 +19,16 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
+    @GetMapping
+    public ResponseEntity<List<Article>> getAllArticles() {
+        try {
+            return ResponseEntity
+                    .ok(articleService.getAllArticles());
+        } catch (NoSuchElementException ex) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Article> getArticleById(@PathVariable Long id) {
         try {
@@ -26,7 +37,6 @@ public class ArticleController {
         } catch(NoSuchElementException ex) {
             return ResponseEntity.notFound().build();
         }
-
     }
 
     @PostMapping
