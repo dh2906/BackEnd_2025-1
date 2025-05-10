@@ -34,7 +34,6 @@ public class ArticleRepository {
         article.setId(key);
         articles.put(key++, article);
 
-
         return article;
     }
 
