@@ -3,15 +3,18 @@ package com.example.bcsd.model;
 import java.time.LocalDateTime;
 
 public class Article {
+    private Long id;
     private String title;
-    private String author;
+    private Long authorId;
+    private Long boardId;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public Article(String title, String author, String content) {
+    public Article(String title, Long authorId, Long boardId, String content) {
         this.title = title;
-        this.author = author;
+        this.authorId = authorId;
+        this.boardId = boardId;
         this.content = content;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
@@ -21,8 +24,12 @@ public class Article {
         return title;
     }
 
-    public String getAuthor() {
-        return author;
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public Long getBoardId() {
+        return boardId;
     }
 
     public String getContent() {
@@ -43,5 +50,9 @@ public class Article {
         updatedAt = LocalDateTime.now();
 
         return this;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
