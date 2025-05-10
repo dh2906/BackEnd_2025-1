@@ -1,6 +1,6 @@
 package com.example.bcsd.service;
 
-import com.example.bcsd.controller.dto.ArticleViewResponse;
+import com.example.bcsd.controller.dto.resopnse.ArticleViewResponse;
 import com.example.bcsd.model.Article;
 import com.example.bcsd.repository.ArticleRepository;
 import com.example.bcsd.repository.MemberRepository;

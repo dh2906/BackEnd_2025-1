@@ -1,4 +1,4 @@
-package com.example.bcsd.controller.dto;
+package com.example.bcsd.controller.dto.resopnse;
 
 public class MemberResponse {
     private Long id;

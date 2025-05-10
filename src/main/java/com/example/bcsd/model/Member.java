@@ -1,6 +1,6 @@
 package com.example.bcsd.model;
 
-import com.example.bcsd.controller.dto.MemberResponse;
+import com.example.bcsd.controller.dto.resopnse.MemberResponse;
 
 public class Member {
     private Long id;

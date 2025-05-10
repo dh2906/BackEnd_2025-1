@@ -1,6 +1,4 @@
-package com.example.bcsd.controller.dto;
-
-import com.example.bcsd.model.Article;
+package com.example.bcsd.controller.dto.request;
 
 public class ArticleUpdateRequest {
     private String title;

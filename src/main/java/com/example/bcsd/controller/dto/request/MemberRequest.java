@@ -1,4 +1,4 @@
-package com.example.bcsd.controller.dto;
+package com.example.bcsd.controller.dto.request;
 
 import com.example.bcsd.model.Member;
 

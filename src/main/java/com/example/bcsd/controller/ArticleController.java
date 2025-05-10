@@ -1,9 +1,8 @@
 package com.example.bcsd.controller;
 
-import com.example.bcsd.controller.dto.ArticleCreateRequest;
-import com.example.bcsd.controller.dto.ArticleResponse;
-import com.example.bcsd.controller.dto.ArticleUpdateRequest;
-import com.example.bcsd.model.Article;
+import com.example.bcsd.controller.dto.request.ArticleCreateRequest;
+import com.example.bcsd.controller.dto.resopnse.ArticleResponse;
+import com.example.bcsd.controller.dto.request.ArticleUpdateRequest;
 import com.example.bcsd.service.ArticleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

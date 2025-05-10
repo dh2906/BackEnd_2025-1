@@ -1,7 +1,7 @@
 package com.example.bcsd.controller;
 
-import com.example.bcsd.controller.dto.MemberRequest;
-import com.example.bcsd.controller.dto.MemberResponse;
+import com.example.bcsd.controller.dto.request.MemberRequest;
+import com.example.bcsd.controller.dto.resopnse.MemberResponse;
 import com.example.bcsd.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

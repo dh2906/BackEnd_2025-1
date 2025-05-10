@@ -1,6 +1,6 @@
 package com.example.bcsd.controller;
 
-import com.example.bcsd.controller.dto.ArticleViewResponse;
+import com.example.bcsd.controller.dto.resopnse.ArticleViewResponse;
 import com.example.bcsd.service.ArticleViewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

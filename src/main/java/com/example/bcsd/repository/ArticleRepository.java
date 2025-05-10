@@ -1,6 +1,5 @@
 package com.example.bcsd.repository;
 
-import com.example.bcsd.controller.dto.ArticleResponse;
 import com.example.bcsd.model.Article;
 import org.springframework.stereotype.Repository;
 

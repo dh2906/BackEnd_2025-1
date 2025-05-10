@@ -1,19 +1,17 @@
-package com.example.bcsd.controller.dto;
+package com.example.bcsd.controller.dto.resopnse;
 
 import java.time.LocalDateTime;
 
-public class ArticleResponse {
+public class ArticleViewResponse {
     private String title;
-    private Long authorId;
-    private Long boardId;
+    private String author;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public ArticleResponse(String title, Long authorId, Long boardId, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public ArticleViewResponse(String title, String author, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.title = title;
-        this.authorId = authorId;
-        this.boardId = boardId;
+        this.author = author;
         this.content = content;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -23,12 +21,8 @@ public class ArticleResponse {
         return title;
     }
 
-    public Long getAuthorId() {
-        return authorId;
-    }
-
-    public Long getBoardId() {
-        return boardId;
+    public String getAuthor() {
+        return author;
     }
 
     public String getContent() {

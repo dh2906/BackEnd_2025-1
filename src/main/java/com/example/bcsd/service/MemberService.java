@@ -1,7 +1,7 @@
 package com.example.bcsd.service;
 
-import com.example.bcsd.controller.dto.MemberRequest;
-import com.example.bcsd.controller.dto.MemberResponse;
+import com.example.bcsd.controller.dto.request.MemberRequest;
+import com.example.bcsd.controller.dto.resopnse.MemberResponse;
 import com.example.bcsd.model.Member;
 import com.example.bcsd.repository.MemberRepository;
 import org.springframework.stereotype.Service;
