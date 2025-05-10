@@ -1,6 +1,7 @@
 package com.example.bcsd.controller;
 
 import com.example.bcsd.controller.dto.ArticleCreateRequest;
+import com.example.bcsd.controller.dto.ArticleResponse;
 import com.example.bcsd.controller.dto.ArticleUpdateRequest;
 import com.example.bcsd.model.Article;
 import com.example.bcsd.service.ArticleService;
@@ -21,26 +22,26 @@ public class ArticleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Article>> getAllArticles() {
+    public ResponseEntity<List<ArticleResponse>> getAllArticles() {
         return ResponseEntity
                 .ok(articleService.getAllArticles());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Article> getArticleById(@PathVariable Long id) {
+    public ResponseEntity<ArticleResponse> getArticleById(@PathVariable Long id) {
         return ResponseEntity
                 .ok(articleService.getArticleById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Article> createArticle(@RequestBody ArticleCreateRequest request) {
+    public ResponseEntity<ArticleResponse> createArticle(@RequestBody ArticleCreateRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(articleService.createArticle(request));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Article> updateArticleById(
+    public ResponseEntity<ArticleResponse> updateArticleById(
             @PathVariable Long id, @RequestBody ArticleUpdateRequest request
     ) {
         return ResponseEntity

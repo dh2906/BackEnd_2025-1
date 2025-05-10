@@ -1,5 +1,7 @@
 package com.example.bcsd.model;
 
+import com.example.bcsd.controller.dto.ArticleResponse;
+
 import java.time.LocalDateTime;
 
 public class Article {
@@ -54,5 +56,9 @@ public class Article {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public ArticleResponse toResponse() {
+        return new ArticleResponse(title, authorId, boardId, content, createdAt, updatedAt);
     }
 }

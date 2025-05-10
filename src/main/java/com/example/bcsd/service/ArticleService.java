@@ -1,6 +1,7 @@
 package com.example.bcsd.service;
 
 import com.example.bcsd.controller.dto.ArticleCreateRequest;
+import com.example.bcsd.controller.dto.ArticleResponse;
 import com.example.bcsd.controller.dto.ArticleUpdateRequest;
 import com.example.bcsd.model.Article;
 import com.example.bcsd.repository.ArticleRepository;
@@ -16,24 +17,30 @@ public class ArticleService {
         this.articleRepository = articleRepository;
     }
 
-    public List<Article> getAllArticles() {
-        return articleRepository.findAll();
+    public List<ArticleResponse> getAllArticles() {
+        return articleRepository.findAll()
+                .stream()
+                .map(Article::toResponse)
+                .toList();
     }
 
-    public Article getArticleById(Long id) {
-        return articleRepository.findById(id);
+    public ArticleResponse getArticleById(Long id) {
+        return articleRepository.findById(id)
+                .toResponse();
     }
 
-    public Article createArticle(ArticleCreateRequest request) {
-        return articleRepository.save(request.toEntity());
+    public ArticleResponse createArticle(ArticleCreateRequest request) {
+        return articleRepository.save(request.toEntity())
+                .toResponse();
     }
 
-    public Article updateArticleById(Long id, ArticleUpdateRequest request) {
+    public ArticleResponse updateArticleById(Long id, ArticleUpdateRequest request) {
         Article article = articleRepository
                 .findById(id)
                 .update(request.getTitle(), request.getContent());
 
-        return articleRepository.save(id, article);
+        return articleRepository.save(id, article)
+                .toResponse();
     }
 
     public void deleteArticleById(Long id) {

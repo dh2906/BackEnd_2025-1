@@ -1,6 +1,6 @@
 package com.example.bcsd.controller;
 
-import com.example.bcsd.model.Article;
+import com.example.bcsd.controller.dto.ArticleResponse;
 import com.example.bcsd.service.ArticleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,7 @@ public class PostViewController {
 
     @GetMapping
     public String getAllArticlesView(Model model) {
-        List<Article> articles = articleService.getAllArticles();
+        List<ArticleResponse> articles = articleService.getAllArticles();
 
         model.addAttribute("articleList", articles);
 

@@ -1,5 +1,6 @@
 package com.example.bcsd.repository;
 
+import com.example.bcsd.controller.dto.ArticleResponse;
 import com.example.bcsd.model.Article;
 import org.springframework.stereotype.Repository;
 
@@ -26,7 +27,7 @@ public class ArticleRepository {
             throw new NoSuchElementException("해당 게시글을 찾을 수 없습니다.");
         }
 
-        return articles.get(id);
+        return article;
     }
 
     public Article save(Article article) {
