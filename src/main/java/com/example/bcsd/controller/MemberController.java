@@ -3,6 +3,7 @@ package com.example.bcsd.controller;
 import com.example.bcsd.controller.dto.request.MemberRequest;
 import com.example.bcsd.controller.dto.resopnse.MemberResponse;
 import com.example.bcsd.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +13,9 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/members")
+@RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
-
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
-    }
 
     @GetMapping
     public ResponseEntity<List<MemberResponse>> getAllMembers() {

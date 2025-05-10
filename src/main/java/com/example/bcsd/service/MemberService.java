@@ -4,17 +4,15 @@ import com.example.bcsd.controller.dto.request.MemberRequest;
 import com.example.bcsd.controller.dto.resopnse.MemberResponse;
 import com.example.bcsd.model.Member;
 import com.example.bcsd.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
-
-    public MemberService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
 
     public List<MemberResponse> getAllMembers() {
         return memberRepository.findAll()

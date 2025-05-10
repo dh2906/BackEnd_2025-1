@@ -4,6 +4,7 @@ import com.example.bcsd.controller.dto.request.ArticleCreateRequest;
 import com.example.bcsd.controller.dto.resopnse.ArticleResponse;
 import com.example.bcsd.controller.dto.request.ArticleUpdateRequest;
 import com.example.bcsd.service.ArticleService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +14,9 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/articles")
+@RequiredArgsConstructor
 public class ArticleController {
     private final ArticleService articleService;
-
-    public ArticleController(ArticleService articleService) {
-        this.articleService = articleService;
-    }
 
     @GetMapping
     public ResponseEntity<List<ArticleResponse>> getAllArticles() {

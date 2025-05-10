@@ -1,19 +1,11 @@
 package com.example.bcsd.controller.dto.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class ArticleUpdateRequest {
     private String title;
     private String content;
-
-    public ArticleUpdateRequest(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getContent() {
-        return content;
-    }
 }

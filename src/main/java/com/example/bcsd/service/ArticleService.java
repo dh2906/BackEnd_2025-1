@@ -5,17 +5,15 @@ import com.example.bcsd.controller.dto.resopnse.ArticleResponse;
 import com.example.bcsd.controller.dto.request.ArticleUpdateRequest;
 import com.example.bcsd.model.Article;
 import com.example.bcsd.repository.ArticleRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ArticleService {
     private final ArticleRepository articleRepository;
-
-    public ArticleService(ArticleRepository articleRepository) {
-        this.articleRepository = articleRepository;
-    }
 
     public List<ArticleResponse> getAllArticles() {
         return articleRepository.findAll()
