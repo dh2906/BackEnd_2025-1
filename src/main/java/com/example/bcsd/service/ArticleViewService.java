@@ -19,12 +19,13 @@ public class ArticleViewService {
         List<Article> articles = articleRepository.findAll();
 
         return articles.stream()
-                .map(article -> new ArticleViewResponse(
-                        article.getTitle(),
-                        memberRepository.findById(article.getAuthorId()).getName(),
-                        article.getContent(),
-                        article.getCreatedAt(),
-                        article.getUpdatedAt())
+                .map(article -> ArticleViewResponse.builder()
+                        .title(article.getTitle())
+                        .author(memberRepository.findById(article.getAuthorId()).getName())
+                        .content(article.getContent())
+                        .createdAt(article.getCreatedAt())
+                        .updatedAt(article.getUpdatedAt())
+                        .build()
                 ).toList();
     }
 }
