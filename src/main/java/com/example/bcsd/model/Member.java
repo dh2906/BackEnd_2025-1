@@ -1,6 +1,5 @@
 package com.example.bcsd.model;
 
-import com.example.bcsd.controller.dto.resopnse.MemberResponse;
 import lombok.Getter;
 import lombok.Setter;
 

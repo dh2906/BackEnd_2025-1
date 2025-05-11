@@ -1,4 +1,4 @@
-package com.example.bcsd.controller.dto.request;
+package com.example.bcsd.dto.request;
 
 import com.example.bcsd.model.Article;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.example.bcsd.controller.dto.resopnse;
+package com.example.bcsd.dto.resopnse;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

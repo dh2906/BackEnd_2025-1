@@ -1,8 +1,8 @@
 package com.example.bcsd.service;
 
-import com.example.bcsd.controller.dto.request.ArticleCreateRequest;
-import com.example.bcsd.controller.dto.resopnse.ArticleResponse;
-import com.example.bcsd.controller.dto.request.ArticleUpdateRequest;
+import com.example.bcsd.dto.request.ArticleCreateRequest;
+import com.example.bcsd.dto.resopnse.ArticleResponse;
+import com.example.bcsd.dto.request.ArticleUpdateRequest;
 import com.example.bcsd.model.Article;
 import com.example.bcsd.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;

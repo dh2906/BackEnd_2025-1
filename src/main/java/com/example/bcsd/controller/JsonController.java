@@ -1,6 +1,6 @@
 package com.example.bcsd.controller;
 
-import com.example.bcsd.controller.dto.resopnse.JsonResponse;
+import com.example.bcsd.dto.resopnse.JsonResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

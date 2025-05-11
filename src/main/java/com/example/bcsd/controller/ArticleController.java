@@ -1,8 +1,8 @@
 package com.example.bcsd.controller;
 
-import com.example.bcsd.controller.dto.request.ArticleCreateRequest;
-import com.example.bcsd.controller.dto.resopnse.ArticleResponse;
-import com.example.bcsd.controller.dto.request.ArticleUpdateRequest;
+import com.example.bcsd.dto.request.ArticleCreateRequest;
+import com.example.bcsd.dto.resopnse.ArticleResponse;
+import com.example.bcsd.dto.request.ArticleUpdateRequest;
 import com.example.bcsd.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

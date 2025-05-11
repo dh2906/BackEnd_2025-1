@@ -1,4 +1,4 @@
-package com.example.bcsd.controller.dto.resopnse;
+package com.example.bcsd.dto.resopnse;
 
 import com.example.bcsd.model.Article;
 import lombok.AllArgsConstructor;
@@ -10,17 +10,19 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor
 @Builder
-public class ArticleViewResponse {
+public class ArticleResponse {
     private String title;
-    private String author;
+    private Long authorId;
+    private Long boardId;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public static ArticleViewResponse formEntity(Article article, String authorName) {
-        return ArticleViewResponse.builder()
+    public static ArticleResponse fromEntity(Article article) {
+        return ArticleResponse.builder()
                 .title(article.getTitle())
-                .author(authorName)
+                .authorId(article.getAuthorId())
+                .boardId(article.getBoardId())
                 .content(article.getContent())
                 .createdAt(article.getCreatedAt())
                 .updatedAt(article.getUpdatedAt())
