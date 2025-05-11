@@ -1,5 +1,6 @@
 package com.example.bcsd.controller.dto.resopnse;
 
+import com.example.bcsd.model.Article;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,5 +16,15 @@ public class ArticleViewResponse {
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    public static ArticleViewResponse formEntity(Article article, String authorName) {
+        return ArticleViewResponse.builder()
+                .title(article.getTitle())
+                .author(authorName)
+                .content(article.getContent())
+                .createdAt(article.getCreatedAt())
+                .updatedAt(article.getUpdatedAt())
+                .build();
+    }
 }
 
