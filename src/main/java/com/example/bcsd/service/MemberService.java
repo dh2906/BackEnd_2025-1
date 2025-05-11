@@ -52,6 +52,11 @@ public class MemberService {
     }
 
     public void deleteMember(Long id) {
+        memberRepository.findById(id)
+                .orElseThrow(() ->
+                        new NoSuchElementException("해당 멤버를 찾을 수 없습니다.")
+                );
+
         memberRepository.delete(id);
     }
 }

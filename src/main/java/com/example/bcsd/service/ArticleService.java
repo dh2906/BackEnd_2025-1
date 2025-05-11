@@ -54,6 +54,11 @@ public class ArticleService {
     }
 
     public void deleteArticleById(Long id) {
+        articleRepository.findById(id)
+                .orElseThrow(() ->
+                        new NoSuchElementException("해당 게시글을 찾을 수 없습니다.")
+                );
+
         articleRepository.delete(id);
     }
 }
