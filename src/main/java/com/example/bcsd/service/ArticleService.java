@@ -18,18 +18,22 @@ public class ArticleService {
     public List<ArticleResponse> getAllArticles() {
         return articleRepository.findAll()
                 .stream()
-                .map(Article::toResponse)
+                .map(ArticleResponse::fromEntity)
                 .toList();
     }
 
     public ArticleResponse getArticleById(Long id) {
-        return articleRepository.findById(id)
-                .toResponse();
+        return ArticleResponse.fromEntity(
+                articleRepository.findById(id)
+        );
     }
 
     public ArticleResponse createArticle(ArticleCreateRequest request) {
-        return articleRepository.save(request.toEntity())
-                .toResponse();
+        return ArticleResponse.fromEntity(
+                articleRepository.save(
+                        request.toEntity()
+                )
+        );
     }
 
     public ArticleResponse updateArticleById(Long id, ArticleUpdateRequest request) {
@@ -37,8 +41,9 @@ public class ArticleService {
                 .findById(id)
                 .update(request.getTitle(), request.getContent());
 
-        return articleRepository.save(id, article)
-                .toResponse();
+        return ArticleResponse.fromEntity(
+                articleRepository.save(id, article)
+        );
     }
 
     public void deleteArticleById(Long id) {

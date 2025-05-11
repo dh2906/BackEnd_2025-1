@@ -17,26 +17,31 @@ public class MemberService {
     public List<MemberResponse> getAllMembers() {
         return memberRepository.findAll()
                 .stream()
-                .map(Member::toResponse)
+                .map(MemberResponse::fromEntity)
                 .toList();
     }
 
     public MemberResponse getMemberById(Long id) {
-        return memberRepository.findById(id)
-                .toResponse();
+        return MemberResponse.fromEntity(
+                memberRepository.findById(id)
+        );
     }
 
     public MemberResponse createMember(MemberRequest request) {
-        return memberRepository.save(request.toEntity())
-                .toResponse();
+        return MemberResponse.fromEntity(
+                memberRepository.save(
+                        request.toEntity()
+                )
+        );
     }
 
     public MemberResponse updateMember(Long id, MemberRequest request) {
         Member member = memberRepository.findById(id)
                 .update(request.getName(), request.getEmail(), request.getPw());
 
-        return memberRepository.save(id, member)
-                .toResponse();
+        return MemberResponse.fromEntity(
+                memberRepository.save(id, member)
+        );
     }
 
     public void deleteMember(Long id) {

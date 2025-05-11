@@ -34,8 +34,4 @@ public class Article {
 
         return this;
     }
-
-    public ArticleResponse toResponse() {
-        return new ArticleResponse(title, authorId, boardId, content, createdAt, updatedAt);
-    }
 }

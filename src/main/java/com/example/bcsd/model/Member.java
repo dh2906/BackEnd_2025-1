@@ -26,8 +26,4 @@ public class Member {
 
         return this;
     }
-
-    public MemberResponse toResponse() {
-        return new MemberResponse(id, name, email);
-    }
 }
