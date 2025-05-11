@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class ArticleResponse {
+    private Long id;
     private String title;
     private Long authorId;
     private Long boardId;
@@ -20,6 +21,7 @@ public class ArticleResponse {
 
     public static ArticleResponse fromEntity(Article article) {
         return ArticleResponse.builder()
+                .id(article.getId())
                 .title(article.getTitle())
                 .authorId(article.getAuthorId())
                 .boardId(article.getBoardId())
