@@ -22,7 +22,7 @@ public class ArticleViewService {
         return articles.stream()
                 .map(article ->
                         ArticleViewResponse.formEntity(
-                                article, memberRepository.findById(article.getId())
+                                article, memberRepository.findById(article.getAuthorId())
                                         .map(Member::getName)
                                         .orElse("알 수 없음")
                         )
