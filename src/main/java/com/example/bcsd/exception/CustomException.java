@@ -1,4 +1,13 @@
 package com.example.bcsd.exception;
 
-public class CustomException {
+import lombok.Getter;
+
+@Getter
+public class CustomException extends RuntimeException {
+    private final ExceptionMessage exceptionMessage;
+
+    public CustomException(ExceptionMessage exceptionMessage) {
+        super(exceptionMessage.getMessage());
+        this.exceptionMessage = exceptionMessage;
+    }
 }

@@ -5,13 +5,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.NoSuchElementException;
-
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
-    @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<Void> notFoundExceptionHandle(NoSuchElementException ex) {
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<Void> notFoundExceptionHandle(CustomException ex) {
         log.error(ex.getMessage());
         return ResponseEntity.notFound().build();
     }

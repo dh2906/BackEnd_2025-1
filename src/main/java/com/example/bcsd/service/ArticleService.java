@@ -1,15 +1,16 @@
 package com.example.bcsd.service;
 
 import com.example.bcsd.dto.request.ArticleCreateRequest;
-import com.example.bcsd.dto.resopnse.ArticleResponse;
 import com.example.bcsd.dto.request.ArticleUpdateRequest;
+import com.example.bcsd.dto.resopnse.ArticleResponse;
+import com.example.bcsd.exception.CustomException;
+import com.example.bcsd.exception.ExceptionMessage;
 import com.example.bcsd.model.Article;
 import com.example.bcsd.repository.ArticleRepositoryImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +28,7 @@ public class ArticleService {
         return ArticleResponse.fromEntity(
                 articleRepository.findById(id)
                         .orElseThrow(() ->
-                                new NoSuchElementException("해당 게시글을 찾을 수 없습니다.")
+                                new CustomException(ExceptionMessage.ARTICLE_NOT_FOUND)
                         )
         );
     }
@@ -44,7 +45,7 @@ public class ArticleService {
         Article article = articleRepository
                 .findById(id)
                 .orElseThrow(() ->
-                        new NoSuchElementException("해당 게시글을 찾을 수 없습니다.")
+                        new CustomException(ExceptionMessage.ARTICLE_NOT_FOUND)
                 )
                 .update(request.getTitle(), request.getContent());
 
@@ -56,7 +57,7 @@ public class ArticleService {
     public void deleteArticleById(Long id) {
         articleRepository.findById(id)
                 .orElseThrow(() ->
-                        new NoSuchElementException("해당 게시글을 찾을 수 없습니다.")
+                        new CustomException(ExceptionMessage.ARTICLE_NOT_FOUND)
                 );
 
         articleRepository.delete(id);
