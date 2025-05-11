@@ -47,9 +47,4 @@ public class MemberController {
 
         return ResponseEntity.noContent().build();
     }
-
-    @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<Void> notFoundExceptionHandle() {
-        return ResponseEntity.notFound().build();
-    }
 }
