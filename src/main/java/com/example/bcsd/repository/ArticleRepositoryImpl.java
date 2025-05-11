@@ -19,14 +19,10 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         return result;
     }
 
-    public Article findById(Long id) {
+    public Optional<Article> findById(Long id) {
         Article article = articles.get(id);
 
-        if (article == null) {
-            throw new NoSuchElementException("해당 게시글을 찾을 수 없습니다.");
-        }
-
-        return article;
+        return Optional.ofNullable(article);
     }
 
     public Article save(Article article) {

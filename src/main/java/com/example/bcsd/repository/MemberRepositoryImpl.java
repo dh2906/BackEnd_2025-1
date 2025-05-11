@@ -19,14 +19,10 @@ public class MemberRepositoryImpl {
         return result;
     }
 
-    public Member findById(Long id) {
+    public Optional<Member> findById(Long id) {
         Member member = members.get(id);
 
-        if (member == null) {
-            throw new NoSuchElementException("해당 멤버를 찾을 수 없습니다.");
-        }
-
-        return member;
+        return Optional.ofNullable(member);
     }
 
     public Member save(Member member) {

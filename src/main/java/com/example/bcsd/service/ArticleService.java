@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +26,9 @@ public class ArticleService {
     public ArticleResponse getArticleById(Long id) {
         return ArticleResponse.fromEntity(
                 articleRepository.findById(id)
+                        .orElseThrow(() ->
+                                new NoSuchElementException("해당 게시글을 찾을 수 없습니다.")
+                        )
         );
     }
 
@@ -39,6 +43,9 @@ public class ArticleService {
     public ArticleResponse updateArticleById(Long id, ArticleUpdateRequest request) {
         Article article = articleRepository
                 .findById(id)
+                .orElseThrow(() ->
+                        new NoSuchElementException("해당 게시글을 찾을 수 없습니다.")
+                )
                 .update(request.getTitle(), request.getContent());
 
         return ArticleResponse.fromEntity(

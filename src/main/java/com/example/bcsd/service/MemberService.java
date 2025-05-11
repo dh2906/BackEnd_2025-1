@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +25,9 @@ public class MemberService {
     public MemberResponse getMemberById(Long id) {
         return MemberResponse.fromEntity(
                 memberRepository.findById(id)
+                        .orElseThrow(() ->
+                                new NoSuchElementException("해당 멤버를 찾을 수 없습니다.")
+                        )
         );
     }
 
@@ -37,6 +41,9 @@ public class MemberService {
 
     public MemberResponse updateMember(Long id, MemberRequest request) {
         Member member = memberRepository.findById(id)
+                .orElseThrow(() ->
+                        new NoSuchElementException("해당 멤버를 찾을 수 없습니다.")
+                )
                 .update(request.getName(), request.getEmail(), request.getPw());
 
         return MemberResponse.fromEntity(
