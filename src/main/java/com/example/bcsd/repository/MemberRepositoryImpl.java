@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Repository
-public class MemberRepositoryImpl {
+public class MemberRepositoryImpl implements MemberRepository {
     private Long key = 1L;
     private final Map<Long, Member> members = new HashMap<>();
 
