@@ -13,5 +13,4 @@ public class GlobalExceptionHandler {
         log.error(ex.getMessage());
         return ResponseEntity.notFound().build();
     }
-
 }
