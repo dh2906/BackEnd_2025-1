@@ -4,10 +4,11 @@ import com.example.bcsd.model.Article;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
 public class ArticleRepositoryImpl implements ArticleRepository {
-    private Long key = 1L;
+    private final AtomicLong key = new AtomicLong(1);
     private final Map<Long, Article> articles = new HashMap<>();
 
     public List<Article> findAll() {
@@ -26,8 +27,8 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     }
 
     public Article save(Article article) {
-        article.setId(key);
-        articles.put(key++, article);
+        article.setId(key.get());
+        articles.put(key.getAndIncrement(), article);
 
         return article;
     }
