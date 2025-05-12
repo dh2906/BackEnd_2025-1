@@ -3,8 +3,8 @@ package com.example.bcsd.service;
 import com.example.bcsd.dto.resopnse.ArticleViewResponse;
 import com.example.bcsd.model.Article;
 import com.example.bcsd.model.Member;
-import com.example.bcsd.repository.ArticleRepositoryImpl;
-import com.example.bcsd.repository.MemberRepositoryImpl;
+import com.example.bcsd.repository.ArticleRepository;
+import com.example.bcsd.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +13,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ArticleViewService {
-    private final ArticleRepositoryImpl articleRepository;
-    private final MemberRepositoryImpl memberRepository;
+    private final ArticleRepository articleRepository;
+    private final MemberRepository memberRepository;
 
     public List<ArticleViewResponse> getAllPostViews() {
         List<Article> articles = articleRepository.findAll();

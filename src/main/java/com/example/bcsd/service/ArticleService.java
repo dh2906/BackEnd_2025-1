@@ -6,7 +6,7 @@ import com.example.bcsd.dto.resopnse.ArticleResponse;
 import com.example.bcsd.exception.CustomException;
 import com.example.bcsd.exception.ExceptionMessage;
 import com.example.bcsd.model.Article;
-import com.example.bcsd.repository.ArticleRepositoryImpl;
+import com.example.bcsd.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ArticleService {
-    private final ArticleRepositoryImpl articleRepository;
+    private final ArticleRepository articleRepository;
 
     public List<ArticleResponse> getAllArticles() {
         return articleRepository.findAll()
