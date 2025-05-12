@@ -1,9 +1,11 @@
 package com.example.bcsd.model;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
+@Builder
 public class Member {
     @Setter
     private Long id;

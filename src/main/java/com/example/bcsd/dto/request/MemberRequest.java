@@ -12,6 +12,10 @@ public class MemberRequest {
     private String pw;
 
     public Member toEntity() {
-        return new Member(name, email, pw);
+        return Member.builder()
+                .name(name)
+                .email(email)
+                .pw(pw)
+                .build();
     }
 }

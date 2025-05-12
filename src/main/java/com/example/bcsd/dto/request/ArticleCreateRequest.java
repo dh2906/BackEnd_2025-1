@@ -2,6 +2,7 @@ package com.example.bcsd.dto.request;
 
 import com.example.bcsd.model.Article;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
@@ -13,6 +14,11 @@ public class ArticleCreateRequest {
     private String content;
 
     public Article toEntity() {
-        return new Article(title, authorId, boardId, content);
+        return Article.builder()
+                .title(title)
+                .authorId(authorId)
+                .boardId(boardId)
+                .content(content)
+                .build();
     }
 }
