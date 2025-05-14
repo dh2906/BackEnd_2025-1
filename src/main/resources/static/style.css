@@ -4,6 +4,13 @@
     margin: 20px;
 }
 
+.article-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
 .article-header {
     display: flex;
     flex-direction: column;
