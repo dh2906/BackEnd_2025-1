@@ -28,4 +28,17 @@ public class ArticleViewService {
                         )
                 ).toList();
     }
+
+    public List<ArticleViewResponse> getAllPostViewsByBoardId(Long boardId) {
+        List<Article> articles = articleRepository.findAllByBoardId(boardId);
+
+        return articles.stream()
+                       .map(article ->
+                               ArticleViewResponse.fromEntity(
+                                       article, memberRepository.findById(article.getAuthorId())
+                                                                .map(Member::getName)
+                                                                .orElse("알 수 없음")
+                               )
+                       ).toList();
+    }
 }

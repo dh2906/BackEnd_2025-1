@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -18,9 +19,18 @@ public class ArticleViewController {
 
     @GetMapping
     public String getAllArticlesView(Model model) {
-        List<ArticleViewResponse> articleList = articleViewService.getAllPostViews();
+        List<ArticleViewResponse> articleViewResponseList = articleViewService.getAllPostViews();
 
-        model.addAttribute("articleList", articleList);
+        model.addAttribute("articleList", articleViewResponseList);
+
+        return "post";
+    }
+
+    @GetMapping(params = "boardId")
+    public String getAllArticlesViewByBoardId(Model model, @RequestParam Long boardId) {
+        List<ArticleViewResponse> articleViewResponseList = articleViewService.getAllPostViewsByBoardId(boardId);
+
+        model.addAttribute("articleList", articleViewResponseList);
 
         return "post";
     }
