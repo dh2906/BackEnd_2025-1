@@ -19,19 +19,16 @@ public class ArticleViewService {
     public List<ArticleViewResponse> getAllPostViews() {
         List<Article> articles = articleRepository.findAll();
 
-        return articles.stream()
-                .map(article ->
-                        ArticleViewResponse.fromEntity(
-                                article, memberRepository.findById(article.getAuthorId())
-                                        .map(Member::getName)
-                                        .orElse("알 수 없음")
-                        )
-                ).toList();
+        return convertToViewResponse(articles);
     }
 
     public List<ArticleViewResponse> getAllPostViewsByBoardId(Long boardId) {
         List<Article> articles = articleRepository.findAllByBoardId(boardId);
 
+        return convertToViewResponse(articles);
+    }
+
+    private List<ArticleViewResponse> convertToViewResponse(List<Article> articles) {
         return articles.stream()
                        .map(article ->
                                ArticleViewResponse.fromEntity(
