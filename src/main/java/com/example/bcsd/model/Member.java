@@ -16,7 +16,7 @@ public class Member {
     private String email;
     private String pw;
 
-    public Member update(String name, String email, String pw) {
+    public Member updatePersonalInformation(String name, String email, String pw) {
         this.name = name;
         this.email = email;
         this.pw = pw;

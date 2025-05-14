@@ -22,7 +22,7 @@ public class Article {
     private LocalDateTime updatedAt;
 
 
-    public Article update(String title, String content) {
+    public Article updateDetails(String title, String content) {
         this.title = title;
         this.content = content;
         updatedAt = LocalDateTime.now();

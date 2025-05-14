@@ -45,7 +45,7 @@ public class MemberService {
                 .orElseThrow(() ->
                         new CustomException(ExceptionMessage.MEMBER_NOT_FOUND)
                 )
-                .update(request.name(), request.email(), request.pw());
+                .updatePersonalInformation(request.name(), request.email(), request.pw());
 
         return MemberResponse.fromEntity(
                 memberRepository.save(id, member)
