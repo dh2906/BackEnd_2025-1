@@ -5,7 +5,7 @@ import com.example.bcsd.dto.resopnse.MemberResponse;
 import com.example.bcsd.exception.CustomException;
 import com.example.bcsd.exception.ExceptionMessage;
 import com.example.bcsd.model.Member;
-import com.example.bcsd.repository.MemberRepositoryImpl;
+import com.example.bcsd.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class MemberService {
-    private final MemberRepositoryImpl memberRepository;
+    private final MemberRepository memberRepository;
 
     public List<MemberResponse> getAllMembers() {
         return memberRepository.findAll()
