@@ -1,4 +1,4 @@
 package com.example.bcsd.repository;
 
-public class MemberJDBCRepository {
+public class MemberJDBCRepositoryImpl {
 }
