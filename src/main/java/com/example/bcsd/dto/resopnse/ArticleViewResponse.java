@@ -13,7 +13,7 @@ public record ArticleViewResponse(
         LocalDateTime createdAt,
         LocalDateTime updatedAt
 ) {
-    public static ArticleViewResponse formEntity(Article article, String authorName) {
+    public static ArticleViewResponse fromEntity(Article article, String authorName) {
         return ArticleViewResponse.builder()
                 .title(article.getTitle())
                 .author(authorName)
