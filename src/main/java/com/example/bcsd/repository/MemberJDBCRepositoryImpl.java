@@ -73,6 +73,7 @@ public class MemberJDBCRepositoryImpl implements MemberRepository {
     private RowMapper<Member> memberRowMapper() {
         return ((rs, rowNum) -> {
             return Member.builder()
+                         .id(rs.getLong("id"))
                          .name(rs.getString("name"))
                          .email(rs.getString("email"))
                          .password(rs.getString("password"))
