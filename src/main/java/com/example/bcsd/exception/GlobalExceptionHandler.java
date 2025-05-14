@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 public class GlobalExceptionHandler {
     @ExceptionHandler(CustomException.class)
-    public ResponseEntity<Void> notFoundExceptionHandle(CustomException ex) {
+    public ResponseEntity<String> notFoundExceptionHandle(CustomException ex) {
         log.error(ex.getMessage());
-        return ResponseEntity.notFound().build();
+
+        return ResponseEntity.status(
+                ex.getExceptionMessage()
+                        .getStatus()
+                )
+                .body(ex.getMessage());
     }
 }
