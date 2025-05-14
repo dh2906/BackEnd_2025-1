@@ -5,13 +5,13 @@ import com.example.bcsd.model.Member;
 public record MemberRequest(
         String name,
         String email,
-        String pw
+        String password
 ) {
     public Member toEntity() {
         return Member.builder()
                 .name(name)
                 .email(email)
-                .pw(pw)
+                .password(password)
                 .build();
     }
 }

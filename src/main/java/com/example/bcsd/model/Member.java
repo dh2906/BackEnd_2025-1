@@ -14,12 +14,12 @@ public class Member {
 
     private String name;
     private String email;
-    private String pw;
+    private String password;
 
-    public Member updatePersonalInformation(String name, String email, String pw) {
+    public Member updatePersonalInformation(String name, String email, String password) {
         this.name = name;
         this.email = email;
-        this.pw = pw;
+        this.password = password;
 
         return this;
     }
