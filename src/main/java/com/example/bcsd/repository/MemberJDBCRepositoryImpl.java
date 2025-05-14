@@ -4,8 +4,11 @@ import com.example.bcsd.model.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,13 +40,19 @@ public class MemberJDBCRepositoryImpl implements MemberRepository {
     @Override
     public Member save(Member member) {
         String sql = "INSERT INTO Member (name, email, password) VALUES (?, ?, ?)";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
 
-        jdbcTemplate.update(
-                sql,
-                member.getName(),
-                member.getEmail(),
-                member.getPassword()
-        );
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, new String[]{"id"});
+
+            ps.setString(1, member.getName());
+            ps.setString(2, member.getEmail());
+            ps.setString(3, member.getPassword());
+
+            return ps;
+        }, keyHolder);
+
+        member.setId(keyHolder.getKey().longValue());
 
         return member;
     }

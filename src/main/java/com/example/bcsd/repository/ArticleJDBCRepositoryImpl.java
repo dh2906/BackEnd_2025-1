@@ -4,8 +4,11 @@ import com.example.bcsd.model.Article;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,16 +40,22 @@ public class ArticleJDBCRepositoryImpl implements ArticleRepository {
     @Override
     public Article save(Article article) {
         String sql = "INSERT INTO Article (author_id, board_id, title, content) VALUES (?, ?, ?, ?)";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, new String[]{"id"});
 
-        jdbcTemplate.update(
-                sql,
-                article.getAuthorId(),
-                article.getBoardId(),
-                article.getTitle(),
-                article.getContent()
-        );
+            ps.setLong(1, article.getAuthorId());
+            ps.setLong(2, article.getBoardId());
+            ps.setString(3, article.getTitle());
+            ps.setString(4, article.getContent());
 
-        return article;
+            return ps;
+        }, keyHolder);
+
+        Long id = keyHolder.getKey().longValue();
+        article.setId(id);
+
+        return findById(id).get();
     }
 
     @Override
