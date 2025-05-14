@@ -1,24 +1,20 @@
 package com.example.bcsd.dto.resopnse;
 
 import com.example.bcsd.model.Article;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Getter
-@AllArgsConstructor
 @Builder
-public class ArticleResponse {
-    private Long id;
-    private String title;
-    private Long authorId;
-    private Long boardId;
-    private String content;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-
+public record ArticleResponse (
+        Long id,
+        String title,
+        Long authorId,
+        Long boardId,
+        String content,
+        LocalDateTime createdAt,
+        LocalDateTime updatedAt
+) {
     public static ArticleResponse fromEntity(Article article) {
         return ArticleResponse.builder()
                 .id(article.getId())

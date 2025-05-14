@@ -47,7 +47,7 @@ public class ArticleService {
                 .orElseThrow(() ->
                         new CustomException(ExceptionMessage.ARTICLE_NOT_FOUND)
                 )
-                .update(request.getTitle(), request.getContent());
+                .update(request.title(), request.content());
 
         return ArticleResponse.fromEntity(
                 articleRepository.save(id, article)
