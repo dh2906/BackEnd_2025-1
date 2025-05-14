@@ -24,6 +24,11 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         return Optional.ofNullable(article);
     }
 
+    @Override
+    public List<Article> findAllByBoardId(Long BoardId) {
+        return List.of();
+    }
+
     public Article save(Article article) {
         article.setId(key.get());
         articles.put(key.getAndIncrement(), article);

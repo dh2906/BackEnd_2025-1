@@ -33,6 +33,13 @@ public class ArticleService {
         );
     }
 
+    public List<ArticleResponse> getArticlesByBoardId(Long boardId) {
+        return articleRepository.findAllByBoardId(boardId)
+                .stream()
+                .map(ArticleResponse::fromEntity)
+                .toList();
+    }
+
     public ArticleResponse createArticle(ArticleCreateRequest request) {
         return ArticleResponse.fromEntity(
                 articleRepository.save(

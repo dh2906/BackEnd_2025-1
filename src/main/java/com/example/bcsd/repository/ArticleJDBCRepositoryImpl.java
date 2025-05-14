@@ -37,6 +37,12 @@ public class ArticleJDBCRepositoryImpl implements ArticleRepository {
         );
     }
 
+    public List<Article> findAllByBoardId(Long boardId) {
+        String sql = "SELECT * FROM Article WHERE board_id = ?";
+
+        return jdbcTemplate.query(sql, articleRowMapper(), boardId);
+    }
+
     @Override
     public Article save(Article article) {
         String sql = "INSERT INTO Article (author_id, board_id, title, content) VALUES (?, ?, ?, ?)";
