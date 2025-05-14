@@ -1,12 +1,10 @@
 package com.example.bcsd.repository;
 
 import com.example.bcsd.model.Article;
-import org.springframework.stereotype.Repository;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Repository
 public class ArticleRepositoryImpl implements ArticleRepository {
     private final AtomicLong key = new AtomicLong(1);
     private final Map<Long, Article> articles = new HashMap<>();
