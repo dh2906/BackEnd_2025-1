@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -19,20 +21,21 @@ public class ArticleViewService {
     private final MemberRepository memberRepository;
     private final BoardRepository boardRepository;
 
-    public List<ArticleViewResponse> getAllPostViews() {
+    public Map<String, List<ArticleViewResponse>> getAllPostViews() {
         List<Article> articles = articleRepository.findAll();
 
         return convertToViewResponse(articles);
     }
 
-    public List<ArticleViewResponse> getAllPostViewsByBoardId(Long boardId) {
+    public Map<String, List<ArticleViewResponse>> getAllPostViewsByBoardId(Long boardId) {
         List<Article> articles = articleRepository.findAllByBoardId(boardId);
 
         return convertToViewResponse(articles);
     }
 
-    private List<ArticleViewResponse> convertToViewResponse(List<Article> articles) {
-        return articles.stream()
+    private Map<String, List<ArticleViewResponse>> convertToViewResponse(List<Article> articles) {
+        return
+                articles.stream()
                 .map(article ->
                         ArticleViewResponse.fromEntity(
                                 article,
@@ -43,6 +46,6 @@ public class ArticleViewService {
                                         .map(Board::getName)
                                         .orElse("알 수 없음")
                         )
-                       ).toList();
+                       ).collect(Collectors.groupingBy(ArticleViewResponse::board));
     }
 }

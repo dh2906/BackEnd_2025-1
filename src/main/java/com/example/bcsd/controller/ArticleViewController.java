@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/posts")
@@ -21,10 +20,7 @@ public class ArticleViewController {
 
     @GetMapping
     public String getAllArticlesView(Model model) {
-        List<ArticleViewResponse> articleViewResponseList = articleViewService.getAllPostViews();
-
-        Map<String, List<ArticleViewResponse>> ArticleListGroupByBoard = articleViewResponseList.stream()
-                .collect(Collectors.groupingBy(ArticleViewResponse::board));
+        Map<String, List<ArticleViewResponse>> ArticleListGroupByBoard = articleViewService.getAllPostViews();
 
         model.addAttribute("articleListGroupByBoard", ArticleListGroupByBoard);
 
@@ -33,9 +29,9 @@ public class ArticleViewController {
 
     @GetMapping(params = "boardId")
     public String getAllArticlesViewByBoardId(Model model, @RequestParam Long boardId) {
-        List<ArticleViewResponse> articleViewResponseList = articleViewService.getAllPostViewsByBoardId(boardId);
+        Map<String, List<ArticleViewResponse>> articleViewResponseList = articleViewService.getAllPostViewsByBoardId(boardId);
 
-        model.addAttribute("articleList", articleViewResponseList);
+        model.addAttribute("articleListGroupByBoard", articleViewResponseList);
 
         return "post";
     }
