@@ -1,7 +1,20 @@
 .article-box {
     width: 300px;
     border: 1px solid black;
-    margin: 20px;
+    margin-bottom: 10px;
+}
+
+.board-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.board-column {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 300px;
+    flex-shrink: 0;
 }
 
 .article-title {
@@ -11,26 +24,22 @@
     text-align: center;
 }
 
-.article-header {
-    display: flex;
-    flex-direction: column;
-}
-
-.article-header h1 {
-    align-self: center;
-}
-
-.article-header p {
-    align-self: flex-end;
-    margin-right: 10px;
-}
-
 hr {
     width: 90%;
     margin: 0 auto;
 }
 
+.article-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 10px;
+    font-size: 0.9em;
+    color: #555;
+}
+
 .article-content {
-    width: 90%;
-    margin: 10px auto 30px auto;
+    margin-top: 10px;
+    padding: 0 15px;
+    text-align: left;
+    word-wrap: break-word;
 }

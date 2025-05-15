@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/posts")
@@ -21,7 +23,10 @@ public class ArticleViewController {
     public String getAllArticlesView(Model model) {
         List<ArticleViewResponse> articleViewResponseList = articleViewService.getAllPostViews();
 
-        model.addAttribute("articleList", articleViewResponseList);
+        Map<String, List<ArticleViewResponse>> ArticleListGroupByBoard = articleViewResponseList.stream()
+                .collect(Collectors.groupingBy(ArticleViewResponse::board));
+
+        model.addAttribute("articleListGroupByBoard", ArticleListGroupByBoard);
 
         return "post";
     }
