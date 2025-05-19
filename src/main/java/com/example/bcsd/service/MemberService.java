@@ -14,10 +14,10 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class MemberService {
     private final MemberRepository memberRepository;
 
+    @Transactional(readOnly = true)
     public List<MemberResponse> getAllMembers() {
         return memberRepository.findAll()
                 .stream()
@@ -25,6 +25,7 @@ public class MemberService {
                 .toList();
     }
 
+    @Transactional(readOnly = true)
     public MemberResponse getMemberById(Long id) {
         return MemberResponse.fromEntity(
                 memberRepository.findById(id)

@@ -19,6 +19,7 @@ import java.util.List;
 public class ArticleService {
     private final ArticleRepository articleRepository;
 
+    @Transactional(readOnly = true)
     public List<ArticleResponse> getAllArticles() {
         return articleRepository.findAll()
                 .stream()
@@ -26,6 +27,7 @@ public class ArticleService {
                 .toList();
     }
 
+    @Transactional(readOnly = true)
     public ArticleResponse getArticleById(Long id) {
         return ArticleResponse.fromEntity(
                 articleRepository.findById(id)
@@ -35,6 +37,7 @@ public class ArticleService {
         );
     }
 
+    @Transactional(readOnly = true)
     public List<ArticleResponse> getArticlesByBoardId(Long boardId) {
         return articleRepository.findAllByBoardId(boardId)
                 .stream()

@@ -23,12 +23,14 @@ public class ArticleViewService {
     private final MemberRepository memberRepository;
     private final BoardRepository boardRepository;
 
+    @Transactional(readOnly = true)
     public Map<String, List<ArticleViewResponse>> getAllPostViews() {
         List<Article> articles = articleRepository.findAll();
 
         return convertToViewResponse(articles);
     }
 
+    @Transactional(readOnly = true)
     public Map<String, List<ArticleViewResponse>> getAllPostViewsByBoardId(Long boardId) {
         List<Article> articles = articleRepository.findAllByBoardId(boardId);
 

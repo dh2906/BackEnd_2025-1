@@ -14,10 +14,10 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class BoardService {
     private final BoardRepository boardRepository;
 
+    @Transactional(readOnly = true)
     public List<BoardResponse> getAllBoards() {
         return boardRepository.findAll()
                               .stream()
@@ -25,6 +25,7 @@ public class BoardService {
                               .toList();
     }
 
+    @Transactional(readOnly = true)
     public BoardResponse getBoardById(Long id) {
         return BoardResponse.fromEntity(
                 boardRepository.findById(id)
