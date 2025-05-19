@@ -8,11 +8,13 @@ import com.example.bcsd.model.Member;
 import com.example.bcsd.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MemberService {
     private final MemberRepository memberRepository;
 
@@ -32,6 +34,7 @@ public class MemberService {
         );
     }
 
+    @Transactional
     public MemberResponse createMember(MemberRequest request) {
         return MemberResponse.fromEntity(
                 memberRepository.save(
@@ -40,6 +43,7 @@ public class MemberService {
         );
     }
 
+    @Transactional
     public MemberResponse updateMember(Long id, MemberRequest request) {
         Member member = memberRepository.findById(id)
                 .orElseThrow(() ->
@@ -51,7 +55,8 @@ public class MemberService {
                 memberRepository.save(id, member)
         );
     }
-
+Re
+    @Transactional
     public void deleteMember(Long id) {
         memberRepository.findById(id)
                 .orElseThrow(() ->

@@ -9,11 +9,13 @@ import com.example.bcsd.model.Article;
 import com.example.bcsd.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ArticleService {
     private final ArticleRepository articleRepository;
 
@@ -40,6 +42,7 @@ public class ArticleService {
                 .toList();
     }
 
+    @Transactional
     public ArticleResponse createArticle(ArticleCreateRequest request) {
         return ArticleResponse.fromEntity(
                 articleRepository.save(
@@ -48,6 +51,7 @@ public class ArticleService {
         );
     }
 
+    @Transactional
     public ArticleResponse updateArticleById(Long id, ArticleUpdateRequest request) {
         Article article = articleRepository
                 .findById(id)
@@ -61,6 +65,7 @@ public class ArticleService {
         );
     }
 
+    @Transactional
     public void deleteArticleById(Long id) {
         articleRepository.findById(id)
                 .orElseThrow(() ->

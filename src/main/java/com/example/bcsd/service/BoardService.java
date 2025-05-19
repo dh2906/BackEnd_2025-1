@@ -8,11 +8,13 @@ import com.example.bcsd.model.Board;
 import com.example.bcsd.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class BoardService {
     private final BoardRepository boardRepository;
 
@@ -32,6 +34,7 @@ public class BoardService {
         );
     }
 
+    @Transactional
     public BoardResponse createBoard(BoardRequest request) {
         return BoardResponse.fromEntity(
                 boardRepository.save(
@@ -40,6 +43,7 @@ public class BoardService {
         );
     }
 
+    @Transactional
     public BoardResponse updateBoardById(Long id, BoardRequest request) {
         Board board = boardRepository
                 .findById(id)
@@ -53,6 +57,7 @@ public class BoardService {
         );
     }
 
+    @Transactional
     public void deleteBoardById(Long id) {
         boardRepository.findById(id)
                          .orElseThrow(() ->

@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
 import java.util.List;
@@ -15,7 +14,6 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class BoardJDBCRepositoryImpl implements BoardRepository {
     private final JdbcTemplate jdbcTemplate;
 
@@ -40,7 +38,6 @@ public class BoardJDBCRepositoryImpl implements BoardRepository {
     }
 
     @Override
-    @Transactional
     public Board save(Board board) {
         String sql = "INSERT INTO Board (name) VALUES (?)";
 
@@ -59,7 +56,6 @@ public class BoardJDBCRepositoryImpl implements BoardRepository {
     }
 
     @Override
-    @Transactional
     public Board save(Long id, Board board) {
         String sql = "UPDATE Board SET name = ? WHERE id = ?";
 
@@ -73,7 +69,6 @@ public class BoardJDBCRepositoryImpl implements BoardRepository {
     }
 
     @Override
-    @Transactional
     public void delete(Long id) {
         String sql = "DELETE from Board WHERE id = ?";
 
