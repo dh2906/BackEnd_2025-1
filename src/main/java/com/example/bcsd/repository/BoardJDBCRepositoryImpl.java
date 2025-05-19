@@ -30,13 +30,13 @@ public class BoardJDBCRepositoryImpl implements BoardRepository {
     public Optional<Board> findById(Long id) {
         String sql = "SELECT * FROM Board WHERE id = ?";
 
-        return Optional.ofNullable(
-                jdbcTemplate.queryForObject(
+        return jdbcTemplate.query(
                         sql,
                         boardRowMapper(),
                         id
                 )
-        );
+                .stream()
+                .findFirst();
     }
 
     @Override

@@ -30,13 +30,13 @@ public class ArticleJDBCRepositoryImpl implements ArticleRepository {
     public Optional<Article> findById(Long id) {
         String sql = "SELECT * FROM Article WHERE id = ?";
 
-        return Optional.ofNullable(
-                jdbcTemplate.queryForObject(
+        return jdbcTemplate.query(
                         sql,
                         articleRowMapper(),
                         id
                 )
-        );
+                .stream()
+                .findFirst();
     }
 
     public List<Article> findAllByBoardId(Long boardId) {

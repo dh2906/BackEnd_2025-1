@@ -30,13 +30,13 @@ public class MemberJDBCRepositoryImpl implements MemberRepository {
     public Optional<Member> findById(Long id) {
         String sql = "SELECT * FROM Member WHERE id = ?";
 
-        return Optional.ofNullable(
-                jdbcTemplate.queryForObject(
+        return jdbcTemplate.query(
                         sql,
                         memberRowMapper(),
                         id
                 )
-        );
+                .stream()
+                .findFirst();
     }
 
     @Override
