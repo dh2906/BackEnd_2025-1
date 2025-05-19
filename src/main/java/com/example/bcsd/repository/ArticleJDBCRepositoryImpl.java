@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Repository
+@Transactional(readOnly = true)
 public class ArticleJDBCRepositoryImpl implements ArticleRepository {
     private final JdbcTemplate jdbcTemplate;
 
@@ -44,6 +46,7 @@ public class ArticleJDBCRepositoryImpl implements ArticleRepository {
     }
 
     @Override
+    @Transactional
     public Article save(Article article) {
         String sql = "INSERT INTO Article (author_id, board_id, title, content) VALUES (?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -65,6 +68,7 @@ public class ArticleJDBCRepositoryImpl implements ArticleRepository {
     }
 
     @Override
+    @Transactional
     public Article save(Long id, Article article) {
         String sql = "UPDATE Article SET title = ?, content = ? WHERE id = ?";
 
@@ -79,6 +83,7 @@ public class ArticleJDBCRepositoryImpl implements ArticleRepository {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         String sql = "DELETE from Article WHERE id = ?";
 
