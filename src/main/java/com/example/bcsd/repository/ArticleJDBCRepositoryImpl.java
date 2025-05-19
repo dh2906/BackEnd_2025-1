@@ -50,6 +50,7 @@ public class ArticleJDBCRepositoryImpl implements ArticleRepository {
     public Article save(Article article) {
         String sql = "INSERT INTO Article (author_id, board_id, title, content) VALUES (?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
+
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, new String[]{"id"});
 
