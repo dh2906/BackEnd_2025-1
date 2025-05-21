@@ -7,6 +7,7 @@ import com.example.bcsd.exception.CustomException;
 import com.example.bcsd.exception.ExceptionMessage;
 import com.example.bcsd.model.Article;
 import com.example.bcsd.repository.ArticleRepository;
+import com.example.bcsd.validation.ArticleValidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class ArticleService {
     private final ArticleRepository articleRepository;
+    private final ArticleValidation articleValidation;
 
     @Transactional(readOnly = true)
     public List<ArticleResponse> getAllArticles() {
@@ -47,6 +49,8 @@ public class ArticleService {
 
     @Transactional
     public ArticleResponse createArticle(ArticleCreateRequest request) {
+        articleValidation.validateCreateArticle(request);
+
         return ArticleResponse.fromEntity(
                 articleRepository.save(
                         request.toEntity()
