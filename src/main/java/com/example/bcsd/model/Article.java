@@ -15,14 +15,21 @@ public class Article {
     private Long id;
 
     private String title;
-    private final Long authorId;
-    private final Long boardId;
+    private Long authorId;
+    private Long boardId;
     private String content;
     private final LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
 
-    public Article updateDetails(String title, String content) {
+    public Article updateDetails(
+            Long authorId,
+            Long boardId,
+            String title,
+            String content
+    ) {
+        this.authorId = authorId;
+        this.boardId = boardId;
         this.title = title;
         this.content = content;
         updatedAt = LocalDateTime.now();
