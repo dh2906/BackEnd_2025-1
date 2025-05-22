@@ -6,6 +6,7 @@ import com.example.bcsd.exception.CustomException;
 import com.example.bcsd.exception.ExceptionMessage;
 import com.example.bcsd.model.Member;
 import com.example.bcsd.repository.MemberRepository;
+import com.example.bcsd.validation.MemberValidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final MemberValidation memberValidation;
 
     @Transactional(readOnly = true)
     public List<MemberResponse> getAllMembers() {
@@ -37,6 +39,8 @@ public class MemberService {
 
     @Transactional
     public MemberResponse createMember(MemberRequest request) {
+        memberValidation.validateEmailDuplicate(request.email());
+
         return MemberResponse.fromEntity(
                 memberRepository.save(
                         request.toEntity()
@@ -46,10 +50,11 @@ public class MemberService {
 
     @Transactional
     public MemberResponse updateMember(Long id, MemberRequest request) {
+        memberValidation.validateEmailDuplicate(request.email());
+        memberValidation.validateMemberExist(id);
+
         Member member = memberRepository.findById(id)
-                .orElseThrow(() ->
-                        new CustomException(ExceptionMessage.MEMBER_NOT_FOUND)
-                )
+                .get()
                 .updatePersonalInformation(request.name(), request.email(), request.password());
 
         return MemberResponse.fromEntity(
@@ -59,10 +64,7 @@ public class MemberService {
 
     @Transactional
     public void deleteMember(Long id) {
-        memberRepository.findById(id)
-                .orElseThrow(() ->
-                        new CustomException(ExceptionMessage.MEMBER_NOT_FOUND)
-                );
+        memberValidation.validateMemberExist(id);
 
         memberRepository.delete(id);
     }
