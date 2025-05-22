@@ -14,13 +14,12 @@ public class MemberValidation {
     public void validateEmailDuplicate(String email) {
         memberRepository.findAll()
                 .stream()
-                .filter((member) ->
-                        email.equals(
-                                member.getEmail()
-                        )
-                )
+                .filter(member ->
+                        email.equals(member.getEmail()))
                 .findFirst()
-                .orElseThrow(() -> new CustomException(ExceptionMessage.EMAIL_DUPLICATE));
+                .ifPresent(member -> {
+                    throw new CustomException(ExceptionMessage.EMAIL_DUPLICATE);
+                });
     }
 
     public void validateMemberExist(Long memberId) {

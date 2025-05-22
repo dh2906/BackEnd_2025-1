@@ -59,7 +59,7 @@ public class MemberJDBCRepositoryImpl implements MemberRepository {
 
     @Override
     public Member save(Long id, Member member) {
-        String sql = "UPDATE Member SET name = ?, email = ? password = ?, WHERE id = ?";
+        String sql = "UPDATE Member SET name = ?, email = ?, password = ? WHERE id = ?";
 
         jdbcTemplate.update(
                 sql,
