@@ -2,21 +2,21 @@ package com.example.bcsd.validation;
 
 import com.example.bcsd.exception.CustomException;
 import com.example.bcsd.exception.ExceptionMessage;
-import com.example.bcsd.service.MemberService;
+import com.example.bcsd.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
 public class MemberValidation {
-    private final MemberService memberService;
+    private final MemberRepository memberRepository;
 
     public void validateEmailDuplicate(String email) {
-        memberService.getAllMembers()
+        memberRepository.findAll()
                 .stream()
                 .filter((member) ->
                         email.equals(
-                                member.email()
+                                member.getEmail()
                         )
                 )
                 .findFirst()
@@ -24,6 +24,9 @@ public class MemberValidation {
     }
 
     public void validateMemberExist(Long memberId) {
-        memberService.getMemberById(memberId);
+        memberRepository.findById(memberId)
+                .orElseThrow(() ->
+                        new CustomException(ExceptionMessage.MEMBER_NOT_FOUND)
+                );
     }
 }
