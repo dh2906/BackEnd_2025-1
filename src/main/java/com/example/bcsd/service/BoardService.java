@@ -6,6 +6,7 @@ import com.example.bcsd.exception.CustomException;
 import com.example.bcsd.exception.ExceptionMessage;
 import com.example.bcsd.model.Board;
 import com.example.bcsd.repository.BoardRepository;
+import com.example.bcsd.validation.BoardValidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardService {
     private final BoardRepository boardRepository;
+    private final BoardValidation boardValidation;
 
     @Transactional(readOnly = true)
     public List<BoardResponse> getAllBoards() {
@@ -60,6 +62,8 @@ public class BoardService {
 
     @Transactional
     public void deleteBoardById(Long id) {
+        boardValidation.validateBoardHasNoArticles(id);
+
         boardRepository.findById(id)
                          .orElseThrow(() ->
                                  new CustomException(ExceptionMessage.BOARD_NOT_FOUND)
