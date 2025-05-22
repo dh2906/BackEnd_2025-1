@@ -49,7 +49,8 @@ public class ArticleService {
 
     @Transactional
     public ArticleResponse createArticle(ArticleCreateRequest request) {
-        articleValidation.validateCreateArticle(request);
+        articleValidation.validateAuthorExist(request.authorId());
+        articleValidation.validateBoardExist(request.boardId());
 
         return ArticleResponse.fromEntity(
                 articleRepository.save(
@@ -60,12 +61,14 @@ public class ArticleService {
 
     @Transactional
     public ArticleResponse updateArticleById(Long id, ArticleUpdateRequest request) {
+        articleValidation.validateAuthorExist(request.authorId());
+        articleValidation.validateBoardExist(request.boardId());
+        articleValidation.validateArticleExist(id);
+
         Article article = articleRepository
                 .findById(id)
-                .orElseThrow(() ->
-                        new CustomException(ExceptionMessage.ARTICLE_NOT_FOUND)
-                )
-                .updateDetails(request.title(), request.content());
+                .get()
+                .updateDetails(request.authorId(), request.boardId(), request.title(), request.content());
 
         return ArticleResponse.fromEntity(
                 articleRepository.save(id, article)
@@ -74,10 +77,7 @@ public class ArticleService {
 
     @Transactional
     public void deleteArticleById(Long id) {
-        articleRepository.findById(id)
-                .orElseThrow(() ->
-                        new CustomException(ExceptionMessage.ARTICLE_NOT_FOUND)
-                );
+        articleValidation.validateArticleExist(id);
 
         articleRepository.delete(id);
     }
