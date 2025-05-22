@@ -49,8 +49,7 @@ public class ArticleService {
 
     @Transactional
     public ArticleResponse createArticle(ArticleCreateRequest request) {
-        articleValidation.validateAuthorExist(request.authorId());
-        articleValidation.validateBoardExist(request.boardId());
+        articleValidation.validateArticleReference(request.authorId(), request.boardId());
 
         return ArticleResponse.fromEntity(
                 articleRepository.save(
@@ -61,8 +60,7 @@ public class ArticleService {
 
     @Transactional
     public ArticleResponse updateArticleById(Long id, ArticleUpdateRequest request) {
-        articleValidation.validateAuthorExist(request.authorId());
-        articleValidation.validateBoardExist(request.boardId());
+        articleValidation.validateArticleReference(request.authorId(), request.boardId());
         articleValidation.validateArticleExist(id);
 
         Article article = articleRepository
