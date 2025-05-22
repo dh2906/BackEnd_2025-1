@@ -65,6 +65,7 @@ public class MemberService {
     @Transactional
     public void deleteMember(Long id) {
         memberValidation.validateMemberExist(id);
+        memberValidation.validateMemberHasNoArticles(id);
 
         memberRepository.delete(id);
     }
