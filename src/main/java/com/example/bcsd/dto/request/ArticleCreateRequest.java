@@ -6,15 +6,15 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record ArticleCreateRequest (
-        @NotBlank
-        @Size(max=255)
-        String title,
-
         @NotNull
         Long authorId,
 
         @NotNull
         Long boardId,
+
+        @NotBlank
+        @Size(max=255)
+        String title,
 
         @NotBlank
         String content
