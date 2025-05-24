@@ -1,4 +1,4 @@
-package com.example.bcsd.exception;
+package com.example.bcsd.global.exception;
 
 import lombok.Getter;
 

@@ -2,8 +2,8 @@ package com.example.bcsd.service;
 
 import com.example.bcsd.dto.request.BoardRequest;
 import com.example.bcsd.dto.resopnse.BoardResponse;
-import com.example.bcsd.exception.CustomException;
-import com.example.bcsd.exception.ExceptionMessage;
+import com.example.bcsd.global.exception.CustomException;
+import com.example.bcsd.global.exception.ExceptionMessage;
 import com.example.bcsd.model.Board;
 import com.example.bcsd.repository.BoardRepository;
 import com.example.bcsd.validation.BoardValidation;

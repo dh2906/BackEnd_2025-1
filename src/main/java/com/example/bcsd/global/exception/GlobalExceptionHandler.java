@@ -1,5 +1,6 @@
-package com.example.bcsd.exception;
+package com.example.bcsd.global.exception;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +15,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class GlobalExceptionHandler {
     @ExceptionHandler(CustomException.class)
-    public ResponseEntity<String> ExceptionHandle(CustomException ex) {
-        log.error("[Exception] : " + ex.getMessage());
+    public ResponseEntity<String> ExceptionHandle(CustomException ex, HttpServletRequest request) {
+        log.error("[Exception] : {}", ex.getMessage());
 
         return ResponseEntity.status(
                 ex.getExceptionMessage()
@@ -32,7 +33,7 @@ public class GlobalExceptionHandler {
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.toList());
 
-        log.error("[Exception] : " + errorMessages.toString());
+        log.error("[Exception] : {}", errorMessages.toString());
 
 
         return ResponseEntity.badRequest().body(errorMessages);
