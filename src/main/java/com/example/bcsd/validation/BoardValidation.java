@@ -12,7 +12,7 @@ public class BoardValidation {
     private final ArticleRepository articleRepository;
 
     public void validateBoardHasNoArticles(Long boardId) {
-        if(!articleRepository.findAllByBoardId(boardId).isEmpty())
+        if (!articleRepository.findAllByBoardId(boardId).isEmpty())
             throw new CustomException(ExceptionMessage.BOARD_HAS_ARTICLES);
     }
 }

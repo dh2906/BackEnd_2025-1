@@ -78,9 +78,9 @@ public class BoardJDBCRepositoryImpl implements BoardRepository {
     private RowMapper<Board> boardRowMapper() {
         return ((rs, rowNum) -> {
             return Board.builder()
-                          .id(rs.getLong("id"))
-                          .name(rs.getString("name"))
-                          .build();
+                    .id(rs.getLong("id"))
+                    .name(rs.getString("name"))
+                    .build();
         });
     }
 }

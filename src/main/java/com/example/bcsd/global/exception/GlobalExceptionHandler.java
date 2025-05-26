@@ -19,8 +19,8 @@ public class GlobalExceptionHandler {
         log.error("[Exception] : {}", ex.getMessage());
 
         return ResponseEntity.status(
-                ex.getExceptionMessage()
-                        .getStatus()
+                        ex.getExceptionMessage()
+                                .getStatus()
                 )
                 .body(ex.getMessage());
     }

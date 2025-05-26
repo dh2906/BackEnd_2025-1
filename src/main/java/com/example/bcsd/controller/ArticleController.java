@@ -27,7 +27,7 @@ public class ArticleController {
     @GetMapping("/{id}")
     public ResponseEntity<ArticleResponse> getArticleById(
             @PathVariable Long id
-            ) {
+    ) {
         return ResponseEntity
                 .ok(articleService.getArticleById(id));
     }

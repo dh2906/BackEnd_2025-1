@@ -89,14 +89,14 @@ public class ArticleJDBCRepositoryImpl implements ArticleRepository {
     private RowMapper<Article> articleRowMapper() {
         return ((rs, rowNum) -> {
             return Article.builder()
-                          .id(rs.getLong("id"))
-                          .authorId(rs.getLong("author_id"))
-                          .boardId(rs.getLong("board_id"))
-                          .title(rs.getString("title"))
-                          .content(rs.getString("content"))
-                          .createdAt(rs.getTimestamp("created_at").toLocalDateTime())
-                          .updatedAt(rs.getTimestamp("updated_at").toLocalDateTime())
-                          .build();
+                    .id(rs.getLong("id"))
+                    .authorId(rs.getLong("author_id"))
+                    .boardId(rs.getLong("board_id"))
+                    .title(rs.getString("title"))
+                    .content(rs.getString("content"))
+                    .createdAt(rs.getTimestamp("created_at").toLocalDateTime())
+                    .updatedAt(rs.getTimestamp("updated_at").toLocalDateTime())
+                    .build();
         });
     }
 }

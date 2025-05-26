@@ -40,16 +40,16 @@ public class ArticleViewService {
     private Map<String, List<ArticleViewResponse>> convertToViewResponse(List<Article> articles) {
         return
                 articles.stream()
-                .map(article ->
-                        ArticleViewResponse.fromEntity(
-                                article,
-                                memberRepository.findById(article.getAuthorId())
-                                        .map(Member::getName)
-                                        .orElse("알 수 없음"),
-                                boardRepository.findById(article.getBoardId())
-                                        .map(Board::getName)
-                                        .orElse("알 수 없음")
-                        )
-                       ).collect(Collectors.groupingBy(ArticleViewResponse::board));
+                        .map(article ->
+                                ArticleViewResponse.fromEntity(
+                                        article,
+                                        memberRepository.findById(article.getAuthorId())
+                                                .map(Member::getName)
+                                                .orElse("알 수 없음"),
+                                        boardRepository.findById(article.getBoardId())
+                                                .map(Board::getName)
+                                                .orElse("알 수 없음")
+                                )
+                        ).collect(Collectors.groupingBy(ArticleViewResponse::board));
     }
 }

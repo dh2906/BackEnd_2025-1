@@ -22,18 +22,18 @@ public class BoardService {
     @Transactional(readOnly = true)
     public List<BoardResponse> getAllBoards() {
         return boardRepository.findAll()
-                              .stream()
-                              .map(BoardResponse::fromEntity)
-                              .toList();
+                .stream()
+                .map(BoardResponse::fromEntity)
+                .toList();
     }
 
     @Transactional(readOnly = true)
     public BoardResponse getBoardById(Long id) {
         return BoardResponse.fromEntity(
                 boardRepository.findById(id)
-                                 .orElseThrow(() ->
-                                         new CustomException(ExceptionMessage.BOARD_NOT_FOUND)
-                                 )
+                        .orElseThrow(() ->
+                                new CustomException(ExceptionMessage.BOARD_NOT_FOUND)
+                        )
         );
     }
 
@@ -65,9 +65,9 @@ public class BoardService {
         boardValidation.validateBoardHasNoArticles(id);
 
         boardRepository.findById(id)
-                         .orElseThrow(() ->
-                                 new CustomException(ExceptionMessage.BOARD_NOT_FOUND)
-                         );
+                .orElseThrow(() ->
+                        new CustomException(ExceptionMessage.BOARD_NOT_FOUND)
+                );
 
         boardRepository.delete(id);
     }
