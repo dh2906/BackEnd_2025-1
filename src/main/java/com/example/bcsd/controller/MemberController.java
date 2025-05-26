@@ -3,6 +3,7 @@ package com.example.bcsd.controller;
 import com.example.bcsd.dto.request.MemberRequest;
 import com.example.bcsd.dto.resopnse.MemberResponse;
 import com.example.bcsd.service.MemberService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,14 +29,14 @@ public class MemberController {
     }
 
     @PostMapping()
-    public ResponseEntity<MemberResponse> createMember(@RequestBody MemberRequest request) {
+    public ResponseEntity<MemberResponse> createMember(@RequestBody @Valid MemberRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(memberService.createMember(request));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MemberResponse> updateMember(@PathVariable Long id, @RequestBody MemberRequest request) {
+    public ResponseEntity<MemberResponse> updateMember(@PathVariable Long id, @RequestBody @Valid MemberRequest request) {
         return ResponseEntity
                 .ok(memberService.updateMember(id, request));
     }

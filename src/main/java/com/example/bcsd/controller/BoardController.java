@@ -3,6 +3,7 @@ package com.example.bcsd.controller;
 import com.example.bcsd.dto.request.BoardRequest;
 import com.example.bcsd.dto.resopnse.BoardResponse;
 import com.example.bcsd.service.BoardService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class BoardController {
     }
 
     @PostMapping
-    public ResponseEntity<BoardResponse> createBoard(@RequestBody BoardRequest request) {
+    public ResponseEntity<BoardResponse> createBoard(@RequestBody @Valid BoardRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(boardService.createBoard(request));
@@ -37,7 +38,7 @@ public class BoardController {
 
     @PutMapping("/{id}")
     public ResponseEntity<BoardResponse> updateArticleById(
-            @PathVariable Long id, @RequestBody BoardRequest request
+            @PathVariable Long id, @RequestBody @Valid BoardRequest request
     ) {
         return ResponseEntity
                 .ok(boardService.updateBoardById(id, request));
