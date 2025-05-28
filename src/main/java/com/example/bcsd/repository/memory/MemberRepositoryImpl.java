@@ -1,6 +1,7 @@
-package com.example.bcsd.repository;
+package com.example.bcsd.repository.memory;
 
 import com.example.bcsd.model.Member;
+import com.example.bcsd.repository.MemberRepository;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;

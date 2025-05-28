@@ -1,6 +1,7 @@
-package com.example.bcsd.repository;
+package com.example.bcsd.repository.jdbc;
 
 import com.example.bcsd.model.Member;
+import com.example.bcsd.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
