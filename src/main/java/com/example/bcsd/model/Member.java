@@ -1,19 +1,26 @@
 package com.example.bcsd.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Getter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Member {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter
     private Long id;
 
+    @Column
     private String name;
+
+    @Column
     private String email;
+
+    @Column
     private String password;
 
     public Member updatePersonalInformation(String name, String email, String password) {

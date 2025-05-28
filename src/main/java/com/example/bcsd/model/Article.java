@@ -1,24 +1,38 @@
 package com.example.bcsd.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Article {
-    @Setter
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String title;
+
+    @Column
     private Long authorId;
+
+    @Column
     private Long boardId;
+
+    @Column
     private String content;
-    private final LocalDateTime createdAt;
+
+    @Column
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    @Column
     private LocalDateTime updatedAt;
 
 

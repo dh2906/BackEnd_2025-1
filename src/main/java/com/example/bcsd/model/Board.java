@@ -1,15 +1,19 @@
 package com.example.bcsd.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Builder
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Board {
-    @Setter
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String name;
 
     public Board updateBoardName(String name) {
