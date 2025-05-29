@@ -18,8 +18,6 @@ public class LogFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         ContentCachingRequestWrapper wrappedRequest = new ContentCachingRequestWrapper(request);
 
-        log.info("-----------------------------------------");
-
         filterChain.doFilter(wrappedRequest, response);
 
         String method = wrappedRequest.getMethod();
@@ -27,9 +25,17 @@ public class LogFilter extends OncePerRequestFilter {
         if (method.equals("POST") || method.equals("PUT")) {
             String body = new String(wrappedRequest.getContentAsByteArray(), wrappedRequest.getCharacterEncoding());
 
+            log.info("-----------------------------------------");
+
+            String exceptionMessage = (String)wrappedRequest.getAttribute("exceptionMessage");
+
+                if (exceptionMessage != null)
+                    log.error("[Exception] : {}", exceptionMessage);
+
             log.info("[요청 Body] : {}", body.replaceAll("\\s{2,}", ""));
+
+            log.info("-----------------------------------------");
         }
 
-        log.info("-----------------------------------------");
     }
 }
