@@ -68,9 +68,7 @@ public class ArticleService {
                 .get()
                 .updateDetails(request.authorId(), request.boardId(), request.title(), request.content());
 
-        return ArticleResponse.fromEntity(
-                articleRepository.save(id, article)
-        );
+        return ArticleResponse.fromEntity(article);
     }
 
     @Transactional

@@ -57,9 +57,7 @@ public class MemberService {
                 .get()
                 .updatePersonalInformation(request.name(), request.email(), request.password());
 
-        return MemberResponse.fromEntity(
-                memberRepository.save(id, member)
-        );
+        return MemberResponse.fromEntity(member);
     }
 
     @Transactional

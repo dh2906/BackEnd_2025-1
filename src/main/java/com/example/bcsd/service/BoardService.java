@@ -55,9 +55,7 @@ public class BoardService {
                 )
                 .updateBoardName(request.name());
 
-        return BoardResponse.fromEntity(
-                boardRepository.save(id, board)
-        );
+        return BoardResponse.fromEntity(board);
     }
 
     @Transactional
