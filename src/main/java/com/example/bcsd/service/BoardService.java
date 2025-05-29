@@ -39,6 +39,8 @@ public class BoardService {
 
     @Transactional
     public BoardResponse createBoard(BoardRequest request) {
+        boardValidation.validateNameDuplicate(request.name());
+
         return BoardResponse.fromEntity(
                 boardRepository.save(
                         request.toEntity()
@@ -48,6 +50,8 @@ public class BoardService {
 
     @Transactional
     public BoardResponse updateBoardById(Long id, BoardRequest request) {
+        boardValidation.validateNameDuplicate(request.name());
+
         Board board = boardRepository
                 .findById(id)
                 .orElseThrow(() ->
