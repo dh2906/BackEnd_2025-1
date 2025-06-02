@@ -5,10 +5,10 @@ import com.example.bcsd.dto.resopnse.MemberResponse;
 import com.example.bcsd.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -30,9 +30,10 @@ public class MemberController {
 
     @PostMapping()
     public ResponseEntity<MemberResponse> createMember(@RequestBody @Valid MemberRequest request) {
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(memberService.createMember(request));
+        MemberResponse response = memberService.createMember(request);
+
+        return ResponseEntity.created(URI.create("/members/" + response.id()))
+                .body(response);
     }
 
     @PutMapping("/{id}")

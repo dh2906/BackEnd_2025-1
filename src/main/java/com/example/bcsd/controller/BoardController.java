@@ -5,10 +5,10 @@ import com.example.bcsd.dto.resopnse.BoardResponse;
 import com.example.bcsd.service.BoardService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -31,9 +31,11 @@ public class BoardController {
 
     @PostMapping
     public ResponseEntity<BoardResponse> createBoard(@RequestBody @Valid BoardRequest request) {
+        BoardResponse response = boardService.createBoard(request);
+
         return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(boardService.createBoard(request));
+                .created(URI.create("/boards/" + response.id()))
+                .body(response);
     }
 
     @PutMapping("/{id}")

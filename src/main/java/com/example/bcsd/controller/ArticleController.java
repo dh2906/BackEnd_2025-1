@@ -6,10 +6,10 @@ import com.example.bcsd.dto.resopnse.ArticleResponse;
 import com.example.bcsd.service.ArticleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -44,9 +44,11 @@ public class ArticleController {
     public ResponseEntity<ArticleResponse> createArticle(
             @RequestBody @Valid ArticleCreateRequest request
     ) {
+        ArticleResponse response = articleService.createArticle(request);
+
         return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(articleService.createArticle(request));
+                .created(URI.create("/articles/" + response.id()))
+                .body(response);
     }
 
     @PutMapping("/{id}")
