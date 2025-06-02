@@ -1,8 +1,12 @@
 package com.example.bcsd.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 
@@ -29,10 +33,11 @@ public class Article {
     private String content;
 
     @Column
-    @CreationTimestamp
+    @CreatedDate
     private LocalDateTime createdAt;
 
     @Column
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 
 
