@@ -42,6 +42,6 @@ public class BoardJPARepositoryImpl implements BoardRepository {
     public void delete(Long id) {
         Board board = entityManager.find(Board.class, id);
 
-        entityManager.remove(id);
+        entityManager.remove(board);
     }
 }

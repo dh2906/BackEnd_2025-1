@@ -40,6 +40,8 @@ public class MemberJPARepositoryImpl implements MemberRepository {
 
     @Override
     public void delete(Long id) {
-        entityManager.remove(id);
+        Member member = entityManager.find(Member.class, id);
+
+        entityManager.remove(member);
     }
 }

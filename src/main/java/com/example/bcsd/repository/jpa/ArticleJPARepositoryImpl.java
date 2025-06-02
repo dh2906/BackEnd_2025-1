@@ -50,6 +50,6 @@ public class ArticleJPARepositoryImpl implements ArticleRepository {
     public void delete(Long id) {
         Article article = entityManager.find(Article.class, id);
 
-        entityManager.remove(id);
+        entityManager.remove(article);
     }
 }
