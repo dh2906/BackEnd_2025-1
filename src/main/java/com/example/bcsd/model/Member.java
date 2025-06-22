@@ -3,6 +3,8 @@ package com.example.bcsd.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Builder
 @AllArgsConstructor
@@ -21,6 +23,9 @@ public class Member {
 
     @Column(nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "author")
+    private List<Article> articles;
 
     public Member updatePersonalInformation(String name, String email, String password) {
         this.name = name;

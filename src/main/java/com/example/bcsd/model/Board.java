@@ -3,6 +3,8 @@ package com.example.bcsd.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Builder
 @Getter
 @AllArgsConstructor
@@ -15,6 +17,9 @@ public class Board {
 
     @Column(length = 100, nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "board")
+    private List<Article> articles;
 
     public Board updateBoardName(String name) {
         this.name = name;

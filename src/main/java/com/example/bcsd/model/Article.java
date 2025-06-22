@@ -23,11 +23,13 @@ public class Article {
     @Column(nullable = false)
     private String title;
 
-    @Column
-    private Long authorId;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Member author;
 
-    @Column
-    private Long boardId;
+    @ManyToOne
+    @JoinColumn(name = "board_id")
+    private Board board;
 
     @Column(nullable = false)
     private String content;
