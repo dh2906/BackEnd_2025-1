@@ -20,7 +20,7 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String title;
 
     @Column
@@ -29,7 +29,7 @@ public class Article {
     @Column
     private Long boardId;
 
-    @Column
+    @Column(nullable = false)
     private String content;
 
     @Column

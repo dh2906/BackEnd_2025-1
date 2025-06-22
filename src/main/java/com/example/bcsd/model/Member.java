@@ -13,13 +13,13 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(length = 100, nullable = false)
     private String name;
 
-    @Column
+    @Column(length = 100, nullable = false)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private String password;
 
     public Member updatePersonalInformation(String name, String email, String password) {

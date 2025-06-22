@@ -13,7 +13,7 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(length = 100, nullable = false)
     private String name;
 
     public Board updateBoardName(String name) {
