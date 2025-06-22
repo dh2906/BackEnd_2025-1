@@ -15,27 +15,6 @@ public class ArticleValidation {
     private final BoardRepository boardRepository;
     private final MemberRepository memberRepository;
 
-    public void validateArticleReference(Long authorId, Long boardId) {
-        validateAuthorExist(authorId);
-        validateBoardExist(boardId);
-    }
-
-    public void validateAuthorExist(Long authorId) {
-        memberRepository
-                .findById(authorId)
-                .orElseThrow(() ->
-                        new CustomException(ExceptionMessage.REFERENCED_RESOURCE_NOT_FOUND)
-                );
-    }
-
-    public void validateBoardExist(Long boardId) {
-        boardRepository
-                .findById(boardId)
-                .orElseThrow(() ->
-                        new CustomException(ExceptionMessage.REFERENCED_RESOURCE_NOT_FOUND)
-                );
-    }
-
     public void validateArticleExist(Long articleId) {
         articleRepository
                 .findById(articleId)
