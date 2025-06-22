@@ -43,10 +43,10 @@ public class ArticleViewService {
                         .map(article ->
                                 ArticleViewResponse.fromEntity(
                                         article,
-                                        memberRepository.findById(article.getAuthorId())
+                                        memberRepository.findById(article.getAuthor().getId())
                                                 .map(Member::getName)
                                                 .orElse("알 수 없음"),
-                                        boardRepository.findById(article.getBoardId())
+                                        boardRepository.findById(article.getBoard().getId())
                                                 .map(Board::getName)
                                                 .orElse("알 수 없음")
                                 )

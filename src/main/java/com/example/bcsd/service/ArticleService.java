@@ -6,8 +6,14 @@ import com.example.bcsd.dto.resopnse.ArticleResponse;
 import com.example.bcsd.global.exception.CustomException;
 import com.example.bcsd.global.exception.ExceptionMessage;
 import com.example.bcsd.model.Article;
+import com.example.bcsd.model.Board;
+import com.example.bcsd.model.Member;
 import com.example.bcsd.repository.ArticleRepository;
+import com.example.bcsd.repository.BoardRepository;
+import com.example.bcsd.repository.MemberRepository;
 import com.example.bcsd.validation.ArticleValidation;
+import com.example.bcsd.validation.BoardValidation;
+import com.example.bcsd.validation.MemberValidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +25,11 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class ArticleService {
     private final ArticleRepository articleRepository;
+    private final BoardRepository boardRepository;
+    private final MemberRepository memberRepository;
     private final ArticleValidation articleValidation;
+    private final MemberValidation memberValidation;
+    private final BoardValidation boardValidation;
 
     @Transactional(readOnly = true)
     public List<ArticleResponse> getAllArticles() {
@@ -49,24 +59,25 @@ public class ArticleService {
 
     @Transactional
     public ArticleResponse createArticle(ArticleCreateRequest request) {
-        articleValidation.validateArticleReference(request.authorId(), request.boardId());
+        Member author = memberValidation.validateMemberExistAndGet(request.authorId());
+        Board board = boardValidation.validateBoardExistAndGet(request.boardId());
 
         return ArticleResponse.fromEntity(
                 articleRepository.save(
-                        request.toEntity()
+                        request.toEntity(author, board)
                 )
         );
     }
 
     @Transactional
     public ArticleResponse updateArticleById(Long id, ArticleUpdateRequest request) {
-        articleValidation.validateArticleReference(request.authorId(), request.boardId());
+        boardValidation.validateBoardExist(request.boardId());
         articleValidation.validateArticleExist(id);
 
         Article article = articleRepository
                 .findById(id)
                 .get()
-                .updateDetails(request.authorId(), request.boardId(), request.title(), request.content());
+                .updateDetails(boardRepository.findById(request.boardId()).get(), request.title(), request.content());
 
         return ArticleResponse.fromEntity(article);
     }

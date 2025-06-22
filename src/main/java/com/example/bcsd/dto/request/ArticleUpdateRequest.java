@@ -5,9 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record ArticleUpdateRequest(
-        @NotNull(message = "작성자 ID가 누락되었습니다.")
-        Long authorId,
-
         @NotNull(message = "게시판 ID가 누락되었습니다.")
         Long boardId,
 

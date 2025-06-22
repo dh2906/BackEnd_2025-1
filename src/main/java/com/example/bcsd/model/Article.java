@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,16 +46,13 @@ public class Article {
 
 
     public Article updateDetails(
-            Long authorId,
-            Long boardId,
+            Board board,
             String title,
             String content
     ) {
-        this.authorId = authorId;
-        this.boardId = boardId;
+        this.board = board;
         this.title = title;
         this.content = content;
-        updatedAt = LocalDateTime.now();
 
         return this;
     }

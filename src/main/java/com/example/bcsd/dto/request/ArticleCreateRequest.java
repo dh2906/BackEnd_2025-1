@@ -1,6 +1,8 @@
 package com.example.bcsd.dto.request;
 
 import com.example.bcsd.model.Article;
+import com.example.bcsd.model.Board;
+import com.example.bcsd.model.Member;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -19,11 +21,11 @@ public record ArticleCreateRequest(
         @NotBlank(message = "본문이 누락되었습니다.")
         String content
 ) {
-    public Article toEntity() {
+    public Article toEntity(Member author, Board board) {
         return Article.builder()
                 .title(title)
-                .authorId(authorId)
-                .boardId(boardId)
+                .author(author)
+                .board(board)
                 .content(content)
                 .build();
     }
