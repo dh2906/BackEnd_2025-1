@@ -26,11 +26,6 @@ public class BoardValidation {
         validateBoardExistAndGet(boardId);
     }
 
-    public void validateBoardHasNoArticles(Long boardId) {
-        if (!articleRepository.findAllByBoardId(boardId).isEmpty())
-            throw new CustomException(ExceptionMessage.BOARD_HAS_ARTICLES);
-    }
-
     public void validateNameDuplicate(String name) {
         boardRepository.findAll().stream()
                 .filter(board ->

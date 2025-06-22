@@ -64,8 +64,6 @@ public class BoardService {
 
     @Transactional
     public void deleteBoardById(Long id) {
-        boardValidation.validateBoardHasNoArticles(id);
-
         boardRepository.findById(id)
                 .orElseThrow(() ->
                         new CustomException(ExceptionMessage.BOARD_NOT_FOUND)
