@@ -1,9 +1,10 @@
 package com.example.bcsd.repository;
 
 import com.example.bcsd.model.Article;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ArticleRepository extends CRUDRepository<Long, Article> {
+public interface ArticleRepository extends JpaRepository<Article, Long> {
     public List<Article> findAllByBoardId(Long boardId);
 }

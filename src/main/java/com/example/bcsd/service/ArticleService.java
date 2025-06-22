@@ -10,7 +10,6 @@ import com.example.bcsd.model.Board;
 import com.example.bcsd.model.Member;
 import com.example.bcsd.repository.ArticleRepository;
 import com.example.bcsd.repository.BoardRepository;
-import com.example.bcsd.repository.MemberRepository;
 import com.example.bcsd.validation.ArticleValidation;
 import com.example.bcsd.validation.BoardValidation;
 import com.example.bcsd.validation.MemberValidation;
@@ -26,7 +25,6 @@ import java.util.List;
 public class ArticleService {
     private final ArticleRepository articleRepository;
     private final BoardRepository boardRepository;
-    private final MemberRepository memberRepository;
     private final ArticleValidation articleValidation;
     private final MemberValidation memberValidation;
     private final BoardValidation boardValidation;
@@ -84,8 +82,8 @@ public class ArticleService {
 
     @Transactional
     public void deleteArticleById(Long id) {
-        articleValidation.validateArticleExist(id);
+        Article article = articleValidation.validateArticleExistAndGet(id);
 
-        articleRepository.delete(id);
+        articleRepository.delete(article);
     }
 }

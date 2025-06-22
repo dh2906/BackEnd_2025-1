@@ -62,9 +62,9 @@ public class MemberService {
 
     @Transactional
     public void deleteMember(Long id) {
-        memberValidation.validateMemberExist(id);
+        Member member = memberValidation.validateMemberExistAndGet(id);
         memberValidation.validateMemberHasNoArticles(id);
 
-        memberRepository.delete(id);
+        memberRepository.delete(member);
     }
 }

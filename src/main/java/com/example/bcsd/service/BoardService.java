@@ -71,6 +71,8 @@ public class BoardService {
                         new CustomException(ExceptionMessage.BOARD_NOT_FOUND)
                 );
 
-        boardRepository.delete(id);
+        Board board = boardValidation.validateBoardExistAndGet(id);
+
+        boardRepository.delete(board);
     }
 }
