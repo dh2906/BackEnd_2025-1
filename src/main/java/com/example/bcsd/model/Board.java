@@ -18,7 +18,7 @@ public class Board {
     @Column(length = 100, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "board", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private List<Article> articles;
 
     public Board updateBoardName(String name) {
