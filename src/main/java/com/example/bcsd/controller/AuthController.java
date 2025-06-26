@@ -4,7 +4,9 @@ import com.example.bcsd.dto.request.LoginRequest;
 import com.example.bcsd.dto.request.MemberRequest;
 import com.example.bcsd.dto.resopnse.MemberResponse;
 import com.example.bcsd.service.AuthService;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -42,5 +44,25 @@ public class AuthController {
 
         return ResponseEntity
                 .ok(response);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logoutMember(
+            HttpServletRequest httpServletRequest,
+            HttpServletResponse httpServletResponse
+    ) {
+        HttpSession session = httpServletRequest.getSession(false);
+
+        if (session != null) {
+            session.invalidate();
+
+            Cookie cookie = new Cookie("JSESSIONID", null);
+            cookie.setMaxAge(0);
+            cookie.setPath("/");
+            cookie.setHttpOnly(true);
+            httpServletResponse.addCookie(cookie);
+        }
+
+        return ResponseEntity.ok().build();
     }
 }
