@@ -4,6 +4,7 @@ import com.example.bcsd.dto.request.MemberRequest;
 import com.example.bcsd.dto.resopnse.MemberResponse;
 import com.example.bcsd.global.exception.CustomException;
 import com.example.bcsd.global.exception.ExceptionMessage;
+import com.example.bcsd.global.util.PasswordEncoder;
 import com.example.bcsd.model.Member;
 import com.example.bcsd.repository.MemberRepository;
 import com.example.bcsd.validation.MemberValidation;
@@ -41,9 +42,11 @@ public class MemberService {
     public MemberResponse createMember(MemberRequest request) {
         memberValidation.validateEmailDuplicate(request.email());
 
+        String encodedPassword = PasswordEncoder.encode(request.password());
+
         return MemberResponse.fromEntity(
                 memberRepository.save(
-                        request.toEntity()
+                        request.toEntity(encodedPassword)
                 )
         );
     }
@@ -55,7 +58,11 @@ public class MemberService {
 
         Member member = memberRepository.findById(id)
                 .get()
-                .updatePersonalInformation(request.name(), request.email(), request.password());
+                .updatePersonalInformation(
+                        request.name(),
+                        request.email(),
+                        PasswordEncoder.encode(request.password())
+                );
 
         return MemberResponse.fromEntity(member);
     }
