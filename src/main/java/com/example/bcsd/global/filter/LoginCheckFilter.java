@@ -24,7 +24,7 @@ public class LoginCheckFilter extends OncePerRequestFilter {
             return true;
         }
 
-        if (method.equals("GET") && (uri.startsWith("/articles") || uri.startsWith("/boards"))) {
+        if (method.equals("GET") && (uri.startsWith("/articles") || uri.startsWith("/boards") || uri.startsWith("/posts"))) {
             return true;
         }
 
