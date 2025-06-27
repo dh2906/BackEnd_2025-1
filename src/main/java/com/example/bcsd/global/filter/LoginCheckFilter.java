@@ -20,7 +20,7 @@ public class LoginCheckFilter extends OncePerRequestFilter {
         String uri = httpServletRequest.getRequestURI();
         String method = httpServletRequest.getMethod();
 
-        if (uri.startsWith("/register") || uri.startsWith("/login")) {
+        if (uri.startsWith("/auth")) {
             return true;
         }
 
