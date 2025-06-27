@@ -2,6 +2,7 @@ package com.example.bcsd.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.util.List;
 
@@ -23,6 +24,10 @@ public class Member {
 
     @Column(nullable = false)
     private String password;
+
+    @Column(length = 100)
+    @ColumnDefault("user")
+    private String role;
 
     @OneToMany(mappedBy = "author")
     private List<Article> articles;
