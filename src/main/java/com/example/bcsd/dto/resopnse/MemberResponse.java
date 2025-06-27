@@ -7,13 +7,15 @@ import lombok.Builder;
 public record MemberResponse(
         Long id,
         String name,
-        String email
+        String email,
+        String role
 ) {
     public static MemberResponse fromEntity(Member member) {
         return MemberResponse.builder()
                 .id(member.getId())
                 .name(member.getName())
                 .email(member.getEmail())
+                .role(member.getRole())
                 .build();
     }
 }
