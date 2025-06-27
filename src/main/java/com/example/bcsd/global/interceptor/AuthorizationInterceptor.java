@@ -24,7 +24,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         String method = request.getMethod();
         String uri = request.getRequestURI();
 
-        if (method.equalsIgnoreCase("GET") || method.equalsIgnoreCase("POST"))
+        if (method.equalsIgnoreCase("GET") || (method.equalsIgnoreCase("POST") && !uri.startsWith("/members")))
             return true;
 
         HttpSession session = request.getSession(false);
@@ -58,7 +58,11 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
     }
 
     public Long extractIdFromUri(String uri) {
-        String[] segments = uri.split("/");
-        return Long.parseLong(segments[segments.length - 1]);
+        try {
+            String[] segments = uri.split("/");
+            return Long.parseLong(segments[segments.length - 1]);
+        } catch (NumberFormatException ex) {
+            return null;
+        }
     }
 }
