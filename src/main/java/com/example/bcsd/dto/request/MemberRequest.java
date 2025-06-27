@@ -30,6 +30,7 @@ public record MemberRequest(
                 .name(name)
                 .email(email)
                 .password(encodedPassword)
+                .role("user")
                 .build();
     }
 }
