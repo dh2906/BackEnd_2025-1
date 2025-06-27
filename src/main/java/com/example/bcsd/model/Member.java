@@ -3,6 +3,7 @@ package com.example.bcsd.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@DynamicInsert
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +28,7 @@ public class Member {
     private String password;
 
     @Column(length = 100)
-    @ColumnDefault("user")
+    @ColumnDefault("'user'")
     private String role;
 
     @OneToMany(mappedBy = "author")
